@@ -3,10 +3,10 @@
 <center>    
     <table>
         <tr>
-            <th><img src="/assets/Foto_Isra.JPG" alt="Foto de Isra"></th>
-            <th><img src="/assets/Foto_Joshua.jpg" alt="Foto de Joshua"></th>
-            <th><img src="/assets/Foto_Joni.jpg" alt="Foto de Jonathan"></th>
-            <th><img src="/assets/Foto_Apo.jpg" alt="Foto de Roberto"></th>
+            <th><img src="/assets/Foto_Isra.JPG" alt="Foto de Isra" width="200"></th>
+            <th><img src="/assets/Foto_Joshua.jpg" alt="Foto de Joshua" width="200"></th>
+            <th><img src="/assets/Foto_Joni.jpg" alt="Foto de Jonathan" width="200"></th>
+            <th><img src="/assets/Foto_Apo.jpg" alt="Foto de Roberto" width="200"></th>
         </tr>
         <tr>
             <th>Israel Cruz Morales</th>
