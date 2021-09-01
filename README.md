@@ -3,7 +3,7 @@
 <center>    
     <table>
         <tr>
-            <th><img src="/assets/Foto_Isra.JPG" alt="Foto de Isra" width="200"></th>
+            <th><img src="/assets/Foto_Isra.JPG" alt="Foto de Isra" width="200" height="200"></th>
             <th><img src="/assets/Foto_Joshua.jpg" alt="Foto de Joshua" width="200"></th>
             <th><img src="/assets/Foto_Joni.jpg" alt="Foto de Jonathan" width="200"></th>
             <th><img src="/assets/Foto_Apo.jpg" alt="Foto de Roberto" width="200"></th>
