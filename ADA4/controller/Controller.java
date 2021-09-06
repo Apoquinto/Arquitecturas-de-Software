@@ -3,23 +3,25 @@ package controller;
 import java.util.Arrays;
 
 import model.Model;
-import view.CLIConfig;
-import view.CLIView;
+import view.ICLI;
 
 public class Controller {
     private Model model;
-    private CLIView view;
+    private ICLI view;
 
-    public Controller(){
-        model = new Model();
-        view = new CLIView(new CLIConfig());
+    public Controller(ICLI view, Model model){
+        this.view = view;
+        this.model = model;
     }
 
     public void start(){
-        view.print(model.teamString());
-        String[] namesArray = model.readFile();
         NamesParser parser = new ConcreteParser();
-        Arrays.sort(parser.parse(namesArray));
+
+        view.print(model.getTeamString());
+
+        String[] namesArray = parser.parse(model.readFile());
+        Arrays.sort(namesArray);
+
         view.update(namesArray);
     }
 }

@@ -23,7 +23,7 @@ public class ConcreteReader implements ReaderInterface {
     public String[] readFile(String fileName) {
         List<String> lines = new ArrayList<>();
 
-        try { /*Era posible encapsular todo en un mismo try/catch*/
+        try {
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line = null;
@@ -34,7 +34,6 @@ public class ConcreteReader implements ReaderInterface {
 
             bufferedReader.close();
         } catch (Exception ex) {
-            /*Cada catch hacía lo mismo, así que puse lo común y añadí que el array se limpie*/
             Logger.getLogger(ConcreteReader.class.getName()).log(Level.SEVERE, null, ex);
             lines.clear();
         }

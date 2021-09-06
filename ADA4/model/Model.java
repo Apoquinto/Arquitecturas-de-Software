@@ -10,16 +10,16 @@ package model;
  * @author israc
  */
 public class Model {
-    private final String fileName; /*Atributo añadido*/
+    private final String fileName;
     private final String teamString;
 
-    public Model() { /*Constructor añade el nombre de archivo*/
+    public Model() {
         this.fileName = "Nombres.txt";
-        this.teamString = "Cruz Morales Israel\n" + "Meza Magaña Joshua\n" + "Gomez Benitez Jonathan\n" + "Llanes Montero Roberto\n"; 
+        this.teamString = "Cruz Morales Israel\n" + "Gomez Benitez Jonathan\n" + "Llanes Montero Roberto\n" + "Meza Magaña Joshua\n\n\n"; 
     }
     
-    public String teamString(){
-        return this.teamString;
+    public String getTeamString(){
+        return teamString;
     }
     
     public String[] readFile() {

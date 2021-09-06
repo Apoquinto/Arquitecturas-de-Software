@@ -10,30 +10,23 @@ package controller;
  */
 public class ConcreteParser implements NamesParser{
     
-     public String[] parse(String[] namesArray){
-       String separados[] = null ;
-       for (int i = 0; i < namesArray.length; i++) {
-        namesArray[i] = namesArray[i].toLowerCase();
-        separados = namesArray[i].split(" ");
+    public String[] parse(String[] namesArray){
+        String[] output = new String[namesArray.length];
         
-        for (int j = 0; j < separados.length;j++){
-            String upper = null;
-            upper = separados[j].substring(0,1).toUpperCase();
-            separados[j] = upper + separados[j].substring(1); 
-            upper = "";
-            if (separados.length > 1){
-                namesArray[i]= separados[0] + " " + separados[1];
-            }else{
-                namesArray[i] = separados[0];
+        for (int i = 0; i < namesArray.length; i++) {
+            String[] separados = namesArray[i].toLowerCase().split(" ");
+            String finalString = "";
+            
+            for (int j = 0; j < separados.length;j++){
+                String firstLetter = separados[j].substring(0,1).toUpperCase();
+                separados[j] = firstLetter + separados[j].substring(1);
+                finalString += separados[j] + (j + 1 < separados.length ? " " : "");
             }
+
+            output[i] = finalString;
         }
         
-        
-        }
-        for (int i = 0; i < namesArray.length; i++){
-       System.out.println(namesArray[i]);
-        }
-        return null;
+        return output;
     }
      
 }
