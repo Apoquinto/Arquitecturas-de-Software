@@ -5,73 +5,76 @@ import javax.swing.*;
 //Your life is the sum of a remainder of an unbalanced equation inherent to the programming
 //of the matrix
 
-public class TheArchitect extends JFrame
-{
-   public void setExit(int x, int y)//records the location of the exit so we can show it when its time
-   {
-       WallXCord=x;
-       WallYCord=y;  
-   } 
-   public void showWall()//used when its time to show the exit.  
-   {
-       updatedMatrix[WallXCord][WallYCord]="E";  
-   }
+import model.Player;
+
+public class TheArchitect extends JFrame {
+    private Player player;
+    int foundPlayer=0;
+    String[][] updatedMatrix;
+    int WallXCord;
+    int WallYCord;
+    int collected=0;
+    boolean level;
+    int globalTotalDimonds=0;
+
+    public void setExit(int x, int y)//records the location of the exit so we can show it when its time
+    {
+        WallXCord=x;
+        WallYCord=y;
+    } 
+
+    public void movePlayerToTile(String[][] currentMatrix, int xScale, int yScale){
+        currentMatrix[this.player.getXPosition()][this.player.getYPosition()] = "N";
+        currentMatrix[this.player.getXPosition()+xScale][this.player.getYPosition()+yScale] = "P";
+    }
+
+    public void showWall()//used when its time to show the exit.  
+    {
+        updatedMatrix[WallXCord][WallYCord]="E";  
+    }
 
     public void playerMove(int xScale, int yScale, String[][] currentMatrix,int totalDimonds)throws StupidAssMove
     {
-       int x=0;
-       int y=0;
-       int found=0;
-       globalTotalDimonds=totalDimonds; //use this later for the gui dimond count
-       nextLevel(false); //dont go to the next level yet.
-       String[][] junkMatrix=currentMatrix;//we will be updating currentMatrix  
-        for (int i = 0; i < currentMatrix.length; i++) //for loop will find were the player is now
-        {
-        for (int j = 0; j < currentMatrix[i].length; j++) 
-        {
-           if(currentMatrix[i][j].equals("P"))//we found the player
-           {
-            x=i;//record the players position
-            y=j;
-            found = 1;
-            break;
-           }
-        }}//end both for loops
-            if(currentMatrix[x+xScale][y+yScale].equals("H"))//its a hidden dimond
-            {
-                currentMatrix[x][y]="N";
-                currentMatrix[x+xScale][y+yScale]="P";
-                currentMatrix[x][y]="N";
-                collected+=1;//we got a hidden dimond! wow!
+        nextLevel(false); //dont go to the next level yet.
+        for (int i = 0; i < currentMatrix.length; i++) {
+            for (int j = 0; j < currentMatrix[i].length; j++){
+                if(currentMatrix[i][j].equals("P")){
+                        this.player = new Player(i, j);
+                        foundPlayer = 1;
+                        break;
+                }
             }
-            else if(currentMatrix[x+xScale][y+yScale].equals("D"))//its a dimond
-            {
-                currentMatrix[x][y]="N";
-                currentMatrix[x+xScale][y+yScale]="P";
-                collected+=1;//we got a dimond
-            }
-            else if(currentMatrix[x+xScale][y+yScale].equals("M") && currentMatrix[x+(xScale*2)][y+(yScale*2)].equals("N"))//move a moveable wall
-            {
-                currentMatrix[x][y]="N";
-                currentMatrix[x+xScale][y+yScale]="P"; 
-                currentMatrix[x+(xScale*2)][y+(yScale*2)]="M";
-            }
-            else if (currentMatrix[x+xScale][y+yScale].equals("N"))//normal move foward onto nothing
-            {
-                currentMatrix[x][y]="N";
-                currentMatrix[x+xScale][y+yScale]="P"; 
-            }
-            else if (currentMatrix[x+xScale][y+yScale].equals("E"))//its an exit
-            {
-                currentMatrix[x][y]="N";
-                currentMatrix[x+xScale][y+yScale]="P"; 
-                nextLevel(true);//allow the next level to be loaded.
-            }
-            else
-               throw new StupidAssMove("Ass Hole hit wall!");
+        }//end both for loops
+            
+        String nextPlayerPosition = currentMatrix[this.player.getXPosition()+xScale][this.player.getYPosition()+yScale];
+        switch (nextPlayerPosition) {
+            case "H": // Next move is a hidden diamond
+                movePlayerToTile(currentMatrix, xScale, yScale);
+                collected+=1;
+                break;
+            case "D": // Next move is a Diamond
+                movePlayerToTile(currentMatrix, xScale, yScale);
+                collected+=1;
+                break;
+            case "M": // Next move is a Move Block
+                if (currentMatrix[player.getXPosition()+(xScale*2)][player.getYPosition()+(yScale*2)].equals("N")){
+                    movePlayerToTile(currentMatrix, xScale, yScale);
+                    currentMatrix[player.getXPosition()+xScale*2][player.getYPosition()+yScale*2] = "M";
+                }
+                break;
+            case "N": // Next move is Nothing
+                movePlayerToTile(currentMatrix, xScale, yScale);
+                break;
+            case "E": // Next move is Exit
+                movePlayerToTile(currentMatrix, xScale, yScale);
+                nextLevel(true);
+                break;            
+            default: // Next move is blocked or is invalid value
+                throw new StupidAssMove("Ass Hole hit wall!"); 
+        }
                 
             if(collected==totalDimonds)//if we have all the dimonds give the player the exit
-            showWall();
+                showWall();
                
             updatedMatrix=currentMatrix;  //we will return updatedMatrix for the gui                     
         }//end method
@@ -103,13 +106,5 @@ public class TheArchitect extends JFrame
              JFrame frame = new JFrame("Warning");
              JOptionPane.showMessageDialog(frame, "You Stupid Ass, Ran into something did you?");
          }
-    }//end inner class
-    
-int foundPlayer=0;
-String[][] updatedMatrix;
-int WallXCord;
-int WallYCord;
-int collected=0;
-boolean level;
-int globalTotalDimonds=0;
-}//end class
+    }
+}
