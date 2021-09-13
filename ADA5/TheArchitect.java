@@ -5,7 +5,6 @@ import javax.swing.*;
 //Your life is the sum of a remainder of an unbalanced equation inherent to the programming
 //of the matrix
 
-import model.Player;
 
 public class TheArchitect extends JFrame {
     private Player player;
