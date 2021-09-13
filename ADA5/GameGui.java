@@ -124,7 +124,10 @@ public class GameGui extends JFrame implements ActionListener
         }
         else if (e.getActionCommand().equals("New Game"))//new game on the menu bar
         {
-             return; //maybe implent this feature later
+            // FUNCTIONABILITY CHANGE
+            fl.loadFile("level1.maz");
+            theArc.setExit(fl.ExitXCord(),fl.ExitYCord());
+            loadMatrixGui("newLoad");
         }//end New Game Command
         else if(e.getActionCommand().equals("EnterName"))//Allows user to enter their name for high score
         {
