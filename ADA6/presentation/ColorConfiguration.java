@@ -1,3 +1,5 @@
+package presentation;
+
 public class ColorConfiguration {
     private String mainColor; 
     private String successColor;
