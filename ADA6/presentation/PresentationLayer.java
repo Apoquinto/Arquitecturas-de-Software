@@ -1,3 +1,5 @@
+package presentation;
+
 public interface PresentationLayer {
     // Basic funcs
     public void print(String msg);
