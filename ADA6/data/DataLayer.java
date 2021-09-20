@@ -1,6 +1,7 @@
 package data;
 
+import java.util.HashSet;
 
 public interface DataLayer{
-    public String[] retrieveStopWords();
+    public HashSet<String> getStopWords();
 }

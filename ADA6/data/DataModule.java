@@ -1,16 +1,19 @@
 package data;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DataModule implements DataLayer {
+    private String fileName;
     
-    String fileName = "stopwords.txt";
-    public String[] retrieveStopWords(){   
-        List<String> lines = new ArrayList<>();
+    public DataModule(){
+        this.fileName = "stopwords.txt";
+    }
+
+    public HashSet<String> getStopWords(){   
+        HashSet<String> stopWords = new HashSet<>();
 
         try { 
             FileReader fileReader = new FileReader(fileName);
@@ -18,16 +21,16 @@ public class DataModule implements DataLayer {
             String line = null;
 
             while ((line = bufferedReader.readLine()) != null) {
-                lines.add(line);
+                stopWords.add(line);
             }
 
             bufferedReader.close();
         } catch (Exception ex) {
             Logger.getLogger(DataModule.class.getName()).log(Level.SEVERE, null, ex);
-            lines.clear();
+            stopWords.clear();
         }
 
-        return lines.toArray(new String[lines.size()]);
+        return stopWords;
     }
     
 }
