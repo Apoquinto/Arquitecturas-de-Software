@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.ArrayList;
 
 public class KwicModule {
-    public KwicModule(){}
-
     public ArrayList<String> executeKwic(String sentence, HashSet<String> stopWords){
         return generateVariations(normaliceSentence(sentence, stopWords));
     }
