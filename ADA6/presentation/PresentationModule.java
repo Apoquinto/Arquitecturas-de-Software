@@ -1,5 +1,7 @@
 package presentation;
 import logic.LogicModule;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PresentationModule implements PresentationLayer {
@@ -56,9 +58,9 @@ public class PresentationModule implements PresentationLayer {
         print(config.getMainColor() + optionMsg + config.getResetColor());
         String msg = read();
         if(logicLayer.verifyIsKwicCommand(msg)){
-            String[] combinations = logicLayer.executeKwic(msg);
+            ArrayList<String> combinations = logicLayer.executeKwic(msg);
             for(String combination : combinations){
-                successMsg(combination); 
+                successMsg(combination);
             }
             print(config.getMainColor() + exitMsg + config.getResetColor());
         } else {
