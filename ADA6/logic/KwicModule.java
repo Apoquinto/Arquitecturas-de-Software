@@ -22,12 +22,14 @@ public class KwicModule {
 
     private ArrayList<String> generateVariations(ArrayList<String> words){
         ArrayList<String> orderedList = new ArrayList<>();
-        String initialSentence = String.join(" ", words); 
-        for(int i = 0; i < words.size(); i++){
-            String nextSentence = String.join(" ", words.subList(i, words.size())) + " " 
+        String initialSentence = String.join(" ", words);
+        orderedList.add(initialSentence);
+        for(int i = 1; i < words.size(); i++){
+            String nextSentence = String.join(" ", words.subList(i, words.size())) 
+                                + " " 
                                 + String.join(" ", words.subList(0, i));
-            orderedList.add(nextSentence);
             if(nextSentence.equals(initialSentence)) break;
+            orderedList.add(nextSentence);
         }
         Collections.sort(orderedList);
         return orderedList;
