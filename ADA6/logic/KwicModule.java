@@ -24,8 +24,8 @@ public class KwicModule {
         ArrayList<String> orderedList = new ArrayList<>();
         String initialSentence = String.join(" ", words); 
         for(int i = 0; i < words.size(); i++){
-            String nextSentence = String.join(" ", words.subList(i, words.size())) + 
-                                " " + String.join(" ", words.subList(0, i));
+            String nextSentence = String.join(" ", words.subList(i, words.size())) + " " 
+                                + String.join(" ", words.subList(0, i));
             orderedList.add(nextSentence);
             if(nextSentence.equals(initialSentence)) break;
         }
