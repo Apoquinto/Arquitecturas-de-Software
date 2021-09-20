@@ -1,9 +1,8 @@
-import presentation.PresentationModule;
-import presentation.ColorConfiguration;
+import presentation.*;
 
 public class Main {
     public static void main(String[] args) {
-        PresentationModule presentationLayer = new PresentationModule(new ColorConfiguration());
+        PresentationLayer presentationLayer = new PresentationModule(new ColorConfiguration());
         presentationLayer.run();
     }
 }

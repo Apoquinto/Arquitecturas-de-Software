@@ -15,9 +15,8 @@ public class DataModule implements DataLayer {
     public HashSet<String> getStopWords(){   
         HashSet<String> stopWords = new HashSet<>();
 
-        try { 
-            FileReader fileReader = new FileReader(fileName);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
             String line = null;
 
             while ((line = bufferedReader.readLine()) != null) {

@@ -8,11 +8,7 @@ public class ColorConfiguration {
     private String resetColor;
 
     public ColorConfiguration(){
-        this.mainColor    = "\u001B[34m";
-        this.successColor = "\u001B[32m";
-        this.warningColor = "\u001B[33m";
-        this.dangerColor  = "\u001B[31m";
-        this.resetColor = "\u001B[0m";
+        this("\u001B[34m", "\u001B[32m", "\u001B[33m", "\u001B[31m");
     }
 
     public ColorConfiguration(String mainColor, String successColor, String warningColor, String dangerColor){

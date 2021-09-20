@@ -16,7 +16,7 @@ public class KwicModule {
         for (String word : sentence.toLowerCase().split(" ")) {
             if(!stopWords.contains(word)) filteredWords.add(word);           
         }
-        filteredWords.remove(0);
+        filteredWords.remove(0); // remove "kwic" word
         return filteredWords;
     }
 

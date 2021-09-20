@@ -2,25 +2,22 @@ package logic;
 
 import java.util.ArrayList;
 
-import data.DataModule;
+import data.*;
 
-public class LogicModule {
-    private DataModule dataModule;
+public class LogicModule implements LogicLayer {
+    private DataLayer dataLayer;
     private KwicModule kwic;
 
     public LogicModule(){
-        this.dataModule = new DataModule();
+        this.dataLayer = new DataModule();
         this.kwic = new KwicModule();
     }
 
-    public Boolean verifyIsKwicCommand(String msg){
-        String[] command = msg.split(" ");
-        Boolean flag = false;
-        if(command[0].equals("kwic")) flag = true;
-        return flag;
+    public boolean verifyIsKwicCommand(String msg) {
+        return msg.split(" ")[0].equals("kwic");
     }
 
-    public ArrayList<String> executeKwic(String sentence){
-        return kwic.executeKwic(sentence, dataModule.getStopWords());
+    public ArrayList<String> executeKwic(String sentence) {
+        return kwic.executeKwic(sentence, dataLayer.getStopWords());
     }
 }
