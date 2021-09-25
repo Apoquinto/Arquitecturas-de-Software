@@ -1,4 +1,4 @@
-package src.model;
+package src.data;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,6 +11,8 @@ import java.util.ArrayList;
  * @author Rober
  */
 public class FileHandler {
+    public FileHandler(){}
+
     public ArrayList<String> readFile(String FileName){
         ArrayList<String> content = new ArrayList<>();
 
@@ -18,17 +20,17 @@ public class FileHandler {
             File file = new File(FileName);
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
-            try {
-                while ((line = reader.readLine()) != null){
-                    content.add(line);
-                }
-            } catch (Exception e) {
-                System.out.println("Error al leer el archivo .csv");
+
+            while ((line = reader.readLine()) != null){
+                content.add(line);
             }
+            System.out.println("Error al leer el archivo .csv");
+    
             reader.close();
             
         } catch (Exception e) {
             System.out.println("Archivo no encontrado.");
+            e.printStackTrace();
         }
 
         return content;
@@ -48,6 +50,7 @@ public class FileHandler {
             }
         } catch (Exception e) {
             System.out.println("Error while trying to write " + fileName);
+            e.printStackTrace();
         }
     }
 }

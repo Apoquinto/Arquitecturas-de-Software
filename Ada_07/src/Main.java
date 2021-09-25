@@ -2,7 +2,7 @@ package src;
 
 import java.util.ArrayList;
 
-import src.model.FileHandler;
+import src.data.FileHandler;
 
 public class Main {
     public static void main(String[] args) {
