@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class FileHandler {
     public FileHandler(){}
 
-    public ArrayList<String> readFile(String FileName){
-        ArrayList<String> content = new ArrayList<>();
+    public String readFile(String FileName){
+        String content = "";
 
         try {
             File file = new File(FileName);
@@ -22,9 +22,8 @@ public class FileHandler {
             String line;
 
             while ((line = reader.readLine()) != null){
-                content.add(line);
+                content = content + " " + line;
             }
-            System.out.println("Error al leer el archivo .csv");
     
             reader.close();
             
