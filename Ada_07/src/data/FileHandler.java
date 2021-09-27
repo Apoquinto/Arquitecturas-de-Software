@@ -1,0 +1,55 @@
+package src.data;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Rober
+ */
+public class FileHandler {
+    public FileHandler(){}
+
+    public String readFile(String FileName){
+        String content = "";
+
+        try {
+            File file = new File(FileName);
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = reader.readLine()) != null){
+                content = content + " " + line;
+            }
+    
+            reader.close();
+            
+        } catch (Exception e) {
+            System.out.println("Archivo no encontrado.");
+            e.printStackTrace();
+        }
+
+        return content;
+    }
+    
+    public void writeFile(String fileName, ArrayList<String> content) {
+        try {
+            if (content.size() > 0) {
+                File csv = new File(fileName);
+                FileWriter writter = new FileWriter(csv);
+
+                for (String line : content) {
+                    writter.write(line + "\n");
+                }
+
+                writter.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Error while trying to write " + fileName);
+            e.printStackTrace();
+        }
+    }
+}
