@@ -21,22 +21,30 @@ public class LogicModule {
     public void run(){
         System.out.print(">> ");
         String[] command = reader.nextLine().split(" ");
-        if( command[0].equals("kwic") && command.length < 4){
-            String outputFileName = command[2];
+        
+        if (command[0].equals("kwic") && command.length == 3) {
             String inputFileName = command[1];
+            String stopWordsFileName = command[2];
+            String outputFileName = "output.txt";
             
-            String text = fileHandler.readFile(inputFileName);
+            ArrayList<String> lines = fileHandler.readFile(inputFileName);
+            ArrayList<String> result = new ArrayList<>();
         
             Pipeline pipeline = new Pipeline();
             pipeline.addFilter(new ToLowerCase());
-            pipeline.addFilter(new FilterStepWords());
+            pipeline.addFilter(new FilterStepWords(stopWordsFileName));
             pipeline.addFilter(new GenerateVariations());
     
-            ArrayList<String> result = (ArrayList<String>) pipeline.send(text);
+            for (String text : lines) {
+                ArrayList<String> variations = (ArrayList<String>) pipeline.send(text);
+                for (String variation : variations) {
+                    result.add(variation);
+                }
+                result.add("\n\n");
+            }
 
             fileHandler.writeFile(outputFileName, result);
-        }
-        else {
+        } else {
             System.out.println("Comando desconocido, revise que este correctamente escrito");
         }
     }

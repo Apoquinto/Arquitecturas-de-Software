@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class FileHandler {
     public FileHandler(){}
 
-    public String readFile(String FileName){
-        String content = "";
+    public ArrayList<String> readFile(String FileName){
+        ArrayList<String> content = new ArrayList<>();
 
         try {
             File file = new File(FileName);
@@ -22,7 +22,7 @@ public class FileHandler {
             String line;
 
             while ((line = reader.readLine()) != null){
-                content = content + " " + line;
+                content.add(line);
             }
     
             reader.close();
