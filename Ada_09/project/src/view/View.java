@@ -55,6 +55,7 @@ public class View extends JFrame implements UIActions {
     }
 
     public int getSelectedProduct() {
+        logger.info("");
         int selectedIndex = -1;
 
         if (productOneRB.isSelected()) {
