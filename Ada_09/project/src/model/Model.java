@@ -5,59 +5,41 @@ import java.util.logging.Logger;
 
 public class Model {
     private final Logger logger;
-    private String firstProductName;
-    private String secondProductName;
-    private String thirdProductName;
-    private final ArrayList<Vote> firstProductVotes;
-    private final ArrayList<Vote> secondProductVotes;
-    private final ArrayList<Vote> thirdProductVotes;
+    private final FileHandler fileHandler;
+    private Poll poll;
 
     public Model() {
         this.logger = Log.getLogger();
-        this.firstProductName = "Producto 1";
-        this.secondProductName = "Producto 2";
-        this.thirdProductName = "Producto 3";
-        this.firstProductVotes = new ArrayList<>();
-        this.secondProductVotes = new ArrayList<>();
-        this.thirdProductVotes = new ArrayList<>();
+        this.poll = new Poll("A simple Pool");
+        fileHandler = new FileHandler();
     }
 
-    public String getFirstProductName() {
-        logger.info("");
-        return firstProductName;
+    public void registerVote(String target){
+        this.poll.registerVote(target);
     }
 
-    public String getSecondProductName() {
-        logger.info("");
-        return secondProductName;
+    public void registerOption(String newOption){
+        this.poll.registerOption(newOption);
     }
 
-    public String getThirdProductName() {
-        logger.info("");
-        return thirdProductName;
+    public void getLabels(){
+        this.poll.getOptionsNames();
     }
 
-    public int getP1VotesAmount() {
-        logger.info("");
-        return firstProductVotes.size();
-    }
-
-    public int getP2VotesAmount() {
-        logger.info("");
-        return secondProductVotes.size();
-    }
-
-    public int getP3VotesAmount() {
-        logger.info("");
-        return thirdProductVotes.size();
+    public void generateHistoryFile(){
+        ArrayList<String> history = new ArrayList<>();
+        this.poll.getEventsHistory().forEach((event) -> history.add(event.toString()));
+        fileHandler.writeFile("VotesRecord.txt", history);
     }
 
     public void readInfo() {
         logger.info("");
+        /*
         retrieveProductNames();
         retrieveVotes(null, firstProductVotes);
         retrieveVotes(null, secondProductVotes);
         retrieveVotes(null, thirdProductVotes);
+        */
         // update observer
     }
 
@@ -67,7 +49,7 @@ public class Model {
         // set names
     }
 
-    private void retrieveVotes(String filename, ArrayList<Vote> targetArray) {
+    private void retrieveVotes(String filename, ArrayList<String> targetArray) {
         logger.info("");
         // File Manager task
         // Add votes to array
