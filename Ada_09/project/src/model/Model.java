@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.logging.Logger;
 
 public class Model {
@@ -25,6 +26,8 @@ public class Model {
     public void getLabels(){
         this.poll.getOptionsNames();
     }
+
+    public Collection<PollOption> getOptionsData(){ return this.poll.getOptions(); }
 
     public void generateHistoryFile(){
         ArrayList<String> history = new ArrayList<>();

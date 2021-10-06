@@ -2,6 +2,7 @@ package view;
 
 import model.Log;
 import model.Model;
+import model.PollOption;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -37,10 +38,11 @@ public class BarChart extends JFrame implements UIActions {
     private void generateChart(Model model) {
         logger.info("");
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.setValue(model.getP1VotesAmount(), "Votos", model.getFirstProductName());
-        dataset.setValue(model.getP2VotesAmount(), "Votos", model.getSecondProductName());
-        dataset.setValue(model.getP3VotesAmount(), "Votos", model.getThirdProductName());
-
+        int index = 0;
+        for (PollOption option: model.getOptionsData()) {
+            dataset.setValue(option.getCount(), "Votos", option.getName());
+            index++;
+        }
         JFreeChart chart = ChartFactory.createBarChart(
                 "Votaciones",
                 "Productos en votación",

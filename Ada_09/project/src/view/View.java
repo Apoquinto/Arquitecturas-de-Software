@@ -41,12 +41,14 @@ public class View extends JFrame implements UIActions {
     public void updateContent(Model model) {
         logger.info("");
         votingOptions.setSelected(productOneRB.getModel(), true);
+        /*
         productOneRB.setText(model.getFirstProductName());
         productTwoRB.setText(model.getSecondProductName());
         productThreeRB.setText(model.getThirdProductName());
         productOneVotes.setText("" + model.getP1VotesAmount());
         productTwoVotes.setText("" + model.getP2VotesAmount());
         productThreeVotes.setText("" + model.getP3VotesAmount());
+         */
     }
 
     public void showError(String message) {

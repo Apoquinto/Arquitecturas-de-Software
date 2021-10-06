@@ -2,6 +2,7 @@ package view;
 
 import model.Log;
 import model.Model;
+import model.PollOption;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -12,6 +13,7 @@ import org.jfree.data.general.PieDataset;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 import java.util.logging.Logger;
 
 public class CakeChart extends JFrame implements UIActions {
@@ -38,10 +40,11 @@ public class CakeChart extends JFrame implements UIActions {
     private void generateChart(Model model) {
         logger.info("");
         DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.insertValue(0, model.getFirstProductName(), model.getP1VotesAmount());
-        dataset.insertValue(1, model.getSecondProductName(), model.getP2VotesAmount());
-        dataset.insertValue(2, model.getThirdProductName(), model.getP3VotesAmount());
-
+        int index = 0;
+        for (PollOption option: model.getOptionsData()) {
+            dataset.insertValue(index, option.getName(), option.getCount());
+            index++;
+        }
         JFreeChart chart = ChartFactory.createPieChart(
                 "Votaciones",
                 dataset,
