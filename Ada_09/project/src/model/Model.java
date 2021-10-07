@@ -1,8 +1,6 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
@@ -13,7 +11,6 @@ public class Model {
 
     public Model() {
         this.logger = Log.getLogger();
-        logger.info("");
         this.poll = new Poll("A simple Pool");
         this.fileHandler = new FileHandler();
     }
@@ -28,12 +25,10 @@ public class Model {
         this.poll.registerOption(newOption);
     }
 
-    public Collection<String> getLabels(){
+    public Collection<PollOption> getOptionsData(){
         logger.info("");
-        return this.poll.getOptionsNames();
+        return this.poll.getOptions();
     }
-
-    public Collection<PollOption> getOptionsData(){ return this.poll.getOptions(); }
 
     public void generateVotesFiles(){
         logger.info("");
@@ -43,14 +38,14 @@ public class Model {
     }
 
     public Iterator<PollOption> getOptionsIterator(){
+        logger.info("");
         return poll.getOptions().iterator();
     }
 
     public void readInfo(String fileName) {
         logger.info("");
-        for (String option: fileHandler.readFile(fileName)) {
-            this.poll.registerOption(option);
+        for (String option : fileHandler.readFile(fileName)) {
+            registerOption(option);
         }
     }
-    // At the end of the voting phase, you always have to update the observer!
 }

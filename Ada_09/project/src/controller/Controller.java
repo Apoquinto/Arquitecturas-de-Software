@@ -47,6 +47,7 @@ public class Controller {
     }
 
     public void update(){
+        logger.info("");
         view.updateContent(model);
         barChart.updateContent(model);
         cakeChart.updateContent(model);
