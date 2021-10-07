@@ -28,6 +28,7 @@ public class Controller {
         view.addGoToCakeChartListener(new GoToCakeChart());
         view.addGoToBarChartListener(new GoToBarChart());
         view.addWindowListener(new SaveChanges());
+        view.addVoteListener(new registerVote());
 
         cakeChart.addGoToMainListener(new GoToMain());
         cakeChart.addWindowListener(new SaveChanges());
@@ -38,24 +39,24 @@ public class Controller {
 
     public void start() {
         logger.info("");
-        model.readInfo();
+        model.readInfo("options.txt");
 
-        // TEMPORAL TESTING (DELETE LATER)
-        // THE OBSERVER IS SUPPOSED TO DO THIS
-        // IN THIS ORDER
+        update();
+
+        view.setVisible(true);
+    }
+
+    public void update(){
         view.updateContent(model);
         barChart.updateContent(model);
         cakeChart.updateContent(model);
-        // END OF TESTING
-
-        view.setVisible(true);
     }
 
     class SaveChanges extends WindowAdapter {
         @Override
         public void windowClosing(WindowEvent event) {
             logger.info("");
-            model.saveVotesInFile();
+            model.generateVotesFiles();
         }
     }
 
@@ -66,6 +67,15 @@ public class Controller {
             view.setVisible(true);
             barChart.setVisible(false);
             cakeChart.setVisible(false);
+        }
+    }
+
+    class registerVote implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            logger.info("");
+            model.registerVote(view.getSelectedProduct());
+            update();
         }
     }
 

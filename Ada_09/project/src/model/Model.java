@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 public class Model {
@@ -11,59 +13,44 @@ public class Model {
 
     public Model() {
         this.logger = Log.getLogger();
+        logger.info("");
         this.poll = new Poll("A simple Pool");
-        fileHandler = new FileHandler();
+        this.fileHandler = new FileHandler();
     }
 
     public void registerVote(String target){
+        logger.info("");
         this.poll.registerVote(target);
     }
 
     public void registerOption(String newOption){
+        logger.info("");
         this.poll.registerOption(newOption);
     }
 
-    public void getLabels(){
-        this.poll.getOptionsNames();
+    public Collection<String> getLabels(){
+        logger.info("");
+        return this.poll.getOptionsNames();
     }
 
     public Collection<PollOption> getOptionsData(){ return this.poll.getOptions(); }
 
-    public void generateHistoryFile(){
-        ArrayList<String> history = new ArrayList<>();
-        this.poll.getEventsHistory().forEach((event) -> history.add(event.toString()));
-        fileHandler.writeFile("VotesRecord.txt", history);
-    }
-
-    public void readInfo() {
+    public void generateVotesFiles(){
         logger.info("");
-        /*
-        retrieveProductNames();
-        retrieveVotes(null, firstProductVotes);
-        retrieveVotes(null, secondProductVotes);
-        retrieveVotes(null, thirdProductVotes);
-        */
-        // update observer
+        for (String name: poll.getOptionsNames()) {
+            fileHandler.writeFile(name + ".txt", poll.getEventsHistoryByName(name));
+        }
     }
 
-    private void retrieveProductNames() {
+    public Iterator<PollOption> getOptionsIterator(){
+        return poll.getOptions().iterator();
+    }
+
+    public void readInfo(String fileName) {
         logger.info("");
-        // File Manager task
-        // set names
+        for (String option: fileHandler.readFile(fileName)) {
+            this.poll.registerOption(option);
+        }
     }
-
-    private void retrieveVotes(String filename, ArrayList<String> targetArray) {
-        logger.info("");
-        // File Manager task
-        // Add votes to array
-    }
-
-    public void saveVotesInFile() {
-        logger.info("");
-        // Save the three arrays in the three different files
-        // specified in the UML (split it in private as retrieve votes)
-    }
-
-    // Vote for ...
     // At the end of the voting phase, you always have to update the observer!
 }

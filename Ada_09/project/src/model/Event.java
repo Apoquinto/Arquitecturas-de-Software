@@ -3,18 +3,22 @@ package model;
 import java.time.LocalDateTime;
 
 public class Event {
-    private String event;
+    private String eventName;
     private String message;
     private LocalDateTime datetime;
 
-    public Event(String event, String message){
-        this.event = event;
+    public Event(String eventName, String message){
+        this.eventName = eventName;
         this.message = message;
         this.datetime = LocalDateTime.now();
     }
 
+    public String getEventName(){
+        return this.eventName;
+    }
+
     @Override
     public String toString() {
-        return "[ " + event + " ] " + message + " a las " + datetime.toString();
+        return "[ " + eventName + " ] " + message + " a las " + datetime.toString();
     }
 }

@@ -18,12 +18,12 @@ public class Poll {
     public void registerOption(String name) {
         PollOption newOption = new PollOption(name);
         this.options.put(name, newOption);
-        this.eventsHistory.add(new Event("Add new option", "Nueva opción " + name + " agregada"));
+        this.eventsHistory.add(new Event(name, "Nueva opción " + name + " agregada"));
     }
 
     public void registerVote(String option){
         this.options.get(option).addVote(1);
-        this.eventsHistory.add(new Event("Add vote", "Nuevo voto agreago a " + option));
+        this.eventsHistory.add(new Event(option, "Nuevo voto agreago a " + option));
     }
 
     public Collection<PollOption> getOptions(){
@@ -36,5 +36,16 @@ public class Poll {
 
     public ArrayList<Event> getEventsHistory(){
         return this.eventsHistory;
+    }
+
+    public ArrayList<String> getEventsHistoryByName(String name){
+        ArrayList<String> events = new ArrayList<>();
+        events.add(options.get(name).toString());
+        for (Event event: eventsHistory) {
+            if (event.getEventName().equals(name)){
+                events.add(event.toString());
+            }
+        }
+        return events;
     }
 }

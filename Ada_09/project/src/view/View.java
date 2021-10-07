@@ -2,13 +2,16 @@ package view;
 
 import model.Log;
 import model.Model;
+import model.PollOption;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 public class View extends JFrame implements UIActions {
     private final Logger logger;
+    private String selected;
     private JPanel background;
     private JLabel title;
     private JLabel optionLabelOne;
@@ -40,15 +43,23 @@ public class View extends JFrame implements UIActions {
 
     public void updateContent(Model model) {
         logger.info("");
-        votingOptions.setSelected(productOneRB.getModel(), true);
-        /*
-        productOneRB.setText(model.getFirstProductName());
-        productTwoRB.setText(model.getSecondProductName());
-        productThreeRB.setText(model.getThirdProductName());
-        productOneVotes.setText("" + model.getP1VotesAmount());
-        productTwoVotes.setText("" + model.getP2VotesAmount());
-        productThreeVotes.setText("" + model.getP3VotesAmount());
-         */
+        try {
+            Iterator<PollOption> options = model.getOptionsIterator();
+            PollOption tempOption;
+            tempOption = options.next();
+            productOneRB.setText(tempOption.getName());
+            productOneVotes.setText("" + tempOption.getCount());
+            tempOption = options.next();
+            productTwoRB.setText(tempOption.getName());
+            productTwoVotes.setText("" + tempOption.getCount());
+            tempOption = options.next();
+            productThreeRB.setText(tempOption.getName());
+            productThreeVotes.setText("" + tempOption.getCount());
+        }
+        catch(Exception e) {
+            System.out.println("Error al consultar los datos");
+            e.printStackTrace();
+        }
     }
 
     public void showError(String message) {
@@ -56,19 +67,17 @@ public class View extends JFrame implements UIActions {
         JOptionPane.showMessageDialog(this, message);
     }
 
-    public int getSelectedProduct() {
+    public String getSelectedProduct() {
         logger.info("");
-        int selectedIndex = -1;
-
+        String result = "";
         if (productOneRB.isSelected()) {
-            selectedIndex = 0;
+            result = productOneRB.getText();
         } else if (productTwoRB.isSelected()) {
-            selectedIndex = 1;
+            result = productTwoRB.getText();
         } else if (productThreeRB.isSelected()) {
-            selectedIndex = 2;
+            result = productThreeRB.getText();
         }
-
-        return selectedIndex;
+        return result;
     }
 
     public void addVoteButtonListener(ActionListener listener) {
@@ -84,5 +93,10 @@ public class View extends JFrame implements UIActions {
     public void addGoToBarChartListener(ActionListener listener) {
         logger.info("");
         barChartButton.addActionListener(listener);
+    }
+
+    public void addVoteListener(ActionListener listener) {
+        logger.info("");
+        voteButton.addActionListener(listener);
     }
 }

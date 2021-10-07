@@ -13,22 +13,9 @@ public class Main {
         View view = new View();
         BarChart barChart = new BarChart();
         CakeChart cakeChart = new CakeChart();
-        // Note: Create the observer, subscribe the views and give it
-        // to the model via constructor
         Model model = new Model();
         Controller controller = new Controller(model, view, barChart, cakeChart);
 
-        model.registerOption("A");
-        model.registerOption("B");
-        model.registerOption("C");
-
-        model.registerVote("A");
-        model.registerVote("A");
-        model.registerVote("B");
-        model.registerVote("C");
-        model.registerVote("C");
-        model.registerVote("C");
-        
         controller.start();
     }
 }

@@ -31,8 +31,6 @@ public class PollOption {
 
     @Override
     public String toString() {
-        return "PoolOption{" +
-                "count=" + count +
-                '}';
+        return "Se han registrado " + count + " votos para la opción " + name;
     }
 }
