@@ -38,11 +38,11 @@ public class BarChart extends JFrame implements UIActions {
     private void generateChart(Model model) {
         logger.info("");
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        int index = 0;
+
         for (PollOption option: model.getOptionsData()) {
             dataset.setValue(option.getCount(), "Votos", option.getName());
-            index++;
         }
+
         JFreeChart chart = ChartFactory.createBarChart(
                 "Votaciones",
                 "Productos en votación",
@@ -59,6 +59,9 @@ public class BarChart extends JFrame implements UIActions {
         chartPanel.setPreferredSize(new Dimension(300, 200));
 
         chartArea.setLayout(new BorderLayout());
+        for (Component com : chartArea.getComponents()) {
+            chartArea.remove(com);
+        }
         chartArea.add(chartPanel, BorderLayout.CENTER);
 
         repaint();

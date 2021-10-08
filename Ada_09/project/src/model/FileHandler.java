@@ -38,14 +38,14 @@ public class FileHandler {
     public void writeFile(String fileName, ArrayList<String> content) {
         try {
             if (content.size() > 0) {
-                File csv = new File(fileName);
-                FileWriter writter = new FileWriter(csv);
+                File file = new File(fileName);
+                FileWriter writer = new FileWriter(file);
 
                 for (String line : content) {
-                    writter.write(line + "\n");
+                    writer.write(line + "\n");
                 }
 
-                writter.close();
+                writer.close();
             }
         } catch (Exception e) {
             System.out.println("Error mientra se trataba de escribir el archivo " + fileName);
