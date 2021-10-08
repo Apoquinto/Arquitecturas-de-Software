@@ -33,14 +33,14 @@ public class PollOption {
         return this.count;
     }
 
-    public void addVote(int noVotes){
+    public void addVote(){
         logger.info("");
-        this.count = Math.max(this.count + noVotes, 0);
+        this.count++;
     }
 
     @Override
     public String toString() {
         logger.info("");
-        return "Se han registrado " + count + " votos para la opción " + name;
+        return "Have been registered " + count + " votes for " + name;
     }
 }

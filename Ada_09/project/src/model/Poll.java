@@ -9,28 +9,35 @@ public class Poll {
     private Logger logger;
     private HashMap<String, PollOption> options;
     private ArrayList<Event> eventsHistory;
-    private String title;
 
-    public Poll(String title) {
+    public Poll() {
         this.logger = Log.getLogger();
         this.eventsHistory = new ArrayList<>();
         this.options = new HashMap<>();
-        this.title = title;
     }
 
-    public void registerOption(String name) {
+    public boolean registerOption(String name) {
         logger.info("");
-        if (options.size() < 3) {
+        boolean canBeRegistered = options.size() < 3;
+
+        if (canBeRegistered) {
             PollOption newOption = new PollOption(name);
-            this.options.put(name, newOption);
-            this.eventsHistory.add(new Event(name, "Nueva opción " + name + " agregada"));
+            options.put(name, newOption);
         }
+
+        return canBeRegistered;
     }
 
     public void registerVote(String option){
         logger.info("");
-        this.options.get(option).addVote(1);
-        this.eventsHistory.add(new Event(option, "Nuevo voto agreago a " + option));
+        options.get(option).addVote();
+        eventsHistory.add(new Event(option));
+    }
+
+    public void registerVote(String option, String timeText){
+        logger.info("");
+        options.get(option).addVote();
+        eventsHistory.add(new Event(option, timeText));
     }
 
     public Collection<PollOption> getOptions(){
@@ -39,6 +46,7 @@ public class Poll {
     }
 
     public void setEvents(ArrayList<Event> events){
+        logger.info("");
         this.eventsHistory = events;
     }
 
@@ -49,18 +57,19 @@ public class Poll {
 
     public ArrayList<Event> getEventsHistory(){
         logger.info("");
-        return this.eventsHistory;
+        return eventsHistory;
     }
 
     public ArrayList<String> getEventsHistoryByName(String name){
         logger.info("");
         ArrayList<String> events = new ArrayList<>();
-        events.add(options.get(name).toString());
+
         for (Event event: eventsHistory) {
             if (event.getEventName().equals(name)){
                 events.add(event.toString());
             }
         }
+
         return events;
     }
 }

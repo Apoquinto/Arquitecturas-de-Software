@@ -27,8 +27,8 @@ public class Controller {
         // Adding listeners area
         view.addGoToCakeChartListener(new GoToCakeChart());
         view.addGoToBarChartListener(new GoToBarChart());
+        view.addVoteButtonListener(new RegisterVote());
         view.addWindowListener(new SaveChanges());
-        view.addVoteListener(new registerVote());
 
         cakeChart.addGoToMainListener(new GoToMain());
         cakeChart.addWindowListener(new SaveChanges());
@@ -46,7 +46,7 @@ public class Controller {
         view.setVisible(true);
     }
 
-    public void update(){
+    private void update(){
         logger.info("");
         view.updateContent(model);
         barChart.updateContent(model);
@@ -71,7 +71,7 @@ public class Controller {
         }
     }
 
-    class registerVote implements ActionListener {
+    class RegisterVote implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
             logger.info("");

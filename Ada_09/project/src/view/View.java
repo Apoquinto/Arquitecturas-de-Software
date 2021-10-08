@@ -70,6 +70,7 @@ public class View extends JFrame implements UIActions {
     public String getSelectedProduct() {
         logger.info("");
         String result = "";
+
         if (productOneRB.isSelected()) {
             result = productOneRB.getText();
         } else if (productTwoRB.isSelected()) {
@@ -77,6 +78,7 @@ public class View extends JFrame implements UIActions {
         } else if (productThreeRB.isSelected()) {
             result = productThreeRB.getText();
         }
+
         return result;
     }
 
@@ -93,10 +95,5 @@ public class View extends JFrame implements UIActions {
     public void addGoToBarChartListener(ActionListener listener) {
         logger.info("");
         barChartButton.addActionListener(listener);
-    }
-
-    public void addVoteListener(ActionListener listener) {
-        logger.info("");
-        voteButton.addActionListener(listener);
     }
 }

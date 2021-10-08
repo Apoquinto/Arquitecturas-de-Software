@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
         // IMPORTANT! Place this in the beginning of every method, it is part of the
         // homework's log requirement.
+        // PD. We are not saving the activity of any constructor.
         Log.getLogger().info("");
         
         // Execution

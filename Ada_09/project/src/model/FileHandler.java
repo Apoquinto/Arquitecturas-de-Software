@@ -5,19 +5,25 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Rober
  */
 public class FileHandler {
-    public FileHandler(){}
+    private Logger logger;
+    
+    public FileHandler(){
+        this.logger = Log.getLogger();
+    }
 
-    public ArrayList<String> readFile(String FileName){
+    public ArrayList<String> readFile(String fileName) {
+        logger.info("");
         ArrayList<String> content = new ArrayList<>();
 
         try {
-            File file = new File(FileName);
+            File file = new File(fileName);
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
 
@@ -26,16 +32,15 @@ public class FileHandler {
             }
 
             reader.close();
-
         } catch (Exception e) {
-            System.out.println("Archivo no encontrado");
-            e.printStackTrace();
+            System.out.println("Archivo " + fileName + " no encontrado");
         }
 
         return content;
     }
 
     public void writeFile(String fileName, ArrayList<String> content) {
+        logger.info("");
         try {
             if (content.size() > 0) {
                 File file = new File(fileName);
@@ -48,8 +53,7 @@ public class FileHandler {
                 writer.close();
             }
         } catch (Exception e) {
-            System.out.println("Error mientra se trataba de escribir el archivo " + fileName);
-            e.printStackTrace();
+            System.out.println("Archivo " + fileName + " no encontrado");
         }
     }
 }
