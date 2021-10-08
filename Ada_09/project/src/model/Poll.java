@@ -30,6 +30,10 @@ public class Poll {
         return options.values();
     }
 
+    public void setEvents(ArrayList<Event> events){
+        this.eventsHistory = events;
+    }
+
     public Collection<String> getOptionsNames(){
         return options.keySet();
     }

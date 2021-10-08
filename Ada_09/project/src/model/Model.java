@@ -50,6 +50,16 @@ public class Model {
         logger.info("");
         for (String option: fileHandler.readFile(fileName)) {
             this.poll.registerOption(option);
+            try{
+                logger.info("Se encontro el archivo, cargando datos de " + option);
+                Iterator<String> data = fileHandler.readFile(option + ".txt").iterator();
+                data.next();
+                data.next();
+                data.forEachRemaining((vote) -> poll.registerVote(option));
+            }
+            catch (Exception e){
+                logger.info("No se encontro el archivo de " + option + ", generando opción.");
+            }
         }
     }
     // At the end of the voting phase, you always have to update the observer!
