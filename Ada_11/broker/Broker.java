@@ -112,19 +112,19 @@ public class Broker {
 
                         // Do something
                         switch ((String) json.get("servicio")) {
-                            case "registrar" -> {
-                                response = register(json);
-                                new FileHandler().writeFile(serverFilename, generateServerCsvContent());
-                            }
-                            case "listar" -> {
-                                response = list(json);
-                            }
-                            case "ejecutar" -> {
-                                response = execute(json);
-                            }
-                            default -> {
-                                response = "{}";
-                            }
+                        case "registrar" -> {
+                            response = register(json);
+                            new FileHandler().writeFile(serverFilename, generateServerCsvContent());
+                        }
+                        case "listar" -> {
+                            response = list(json);
+                        }
+                        case "ejecutar" -> {
+                            response = execute(json);
+                        }
+                        default -> {
+                            response = "{}";
+                        }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -242,7 +242,7 @@ public class Broker {
 
                     if (server.supportsService(serviceName) && server.getParamsOfService(serviceName) == paramsAmount) {
                         try {
-                            // Send my request
+                            // Send my request to the server found
                             Socket serverSocket = new Socket(server.getHost(), server.getPort());
                             BufferedReader in = new BufferedReader(
                                     new InputStreamReader(serverSocket.getInputStream()));

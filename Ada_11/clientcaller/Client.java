@@ -60,6 +60,12 @@ public class Client {
         vars.add("1");
         System.out.println(client.sendMessage(new CallsFormatter().generateRequest("ejecutar", 2, vars.iterator())));
 
+        // Service: Contar
+        vars.clear();
+        vars.add("servicio");
+        vars.add("contar");
+        System.out.println(client.sendMessage(new CallsFormatter().generateRequest("ejecutar", 1, vars.iterator())));
+
         client.stopConnection();
     }
 }

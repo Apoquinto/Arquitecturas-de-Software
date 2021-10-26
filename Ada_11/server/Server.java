@@ -126,26 +126,27 @@ public class Server {
 
                         // Do something
                         switch ((String) json.get("servicio")) {
-                            case "contar" -> {
-                                // ...
-                                // response = ...
-                            }
-                            case "votar" -> {
-                                // TEST!!!!!
-                                System.out.println(line);
-                                response = "{\"servicio\" : \"votar\",\"respuestas\" : 1,\"respuesta1\" : \"Windows\",\"valor1\" : 21}";
-                            }
-                            case "registrar" -> {
-                                // ...
-                                // response = ...
-                            }
-                            case "listar" -> {
-                                // ...
-                                // response = ...
-                            }
-                            default -> {
-                                response = "{}";
-                            }
+                        case "contar" -> {
+                            // TEST!!!!!
+                            System.out.println(line);
+                            response = "{\"servicio\" : \"contar\",\"respuestas\" : 3,\"respuesta1\" : \"Windows\",\"valor1\" : 20,\"respuesta2\" : \"MacOS\",\"valor2\" : 10,\"respuesta3\" : \"Unix\",\"valor3\" : 24}";
+                        }
+                        case "votar" -> {
+                            // TEST!!!!!
+                            System.out.println(line);
+                            response = "{\"servicio\" : \"votar\",\"respuestas\" : 1,\"respuesta1\" : \"Windows\",\"valor1\" : 21}";
+                        }
+                        case "registrar" -> {
+                            // ...
+                            // response = ...
+                        }
+                        case "listar" -> {
+                            // ...
+                            // response = ...
+                        }
+                        default -> {
+                            response = "{}";
+                        }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
