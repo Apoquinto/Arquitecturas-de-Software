@@ -1,6 +1,5 @@
 import java.net.*;
 import java.util.ArrayList;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -104,9 +103,11 @@ public class Server {
 
     class ServerServiceModule extends Thread {
         private Socket clientSocket;
+        private ServerService serverService;
 
         public ServerServiceModule(Socket cliSocket) {
             this.clientSocket = cliSocket;
+            this.serverService = new ServerService();
         }
 
         @Override
@@ -127,22 +128,24 @@ public class Server {
                         // Do something
                         switch ((String) json.get("servicio")) {
                         case "contar" -> {
-                            // TEST!!!!!
                             System.out.println(line);
-                            response = "{\"servicio\" : \"contar\",\"respuestas\" : 3,\"respuesta1\" : \"Windows\",\"valor1\" : 20,\"respuesta2\" : \"MacOS\",\"valor2\" : 10,\"respuesta3\" : \"Unix\",\"valor3\" : 24}";
+                            response = serverService.contar();
                         }
                         case "votar" -> {
-                            // TEST!!!!!
                             System.out.println(line);
-                            response = "{\"servicio\" : \"votar\",\"respuestas\" : 1,\"respuesta1\" : \"Windows\",\"valor1\" : 21}";
+                            int voto = ((Long) json.get("valor1")).intValue();
+                            String producto = (String) json.get("variable1");
+                            response =   serverService.votar(producto, voto);
                         }
                         case "registrar" -> {
-                            // ...
-                            // response = ...
+                            String valor1 = (String) json.get("valor1");
+                            String valor2 = (String) json.get("valor2");
+                            System.out.println(line);
+                            response = serverService.registrar(valor1, valor2);
                         }
                         case "listar" -> {
-                            // ...
-                            // response = ...
+                            System.out.println(line);
+                            response = serverService.listar();
                         }
                         default -> {
                             response = "{}";
