@@ -58,6 +58,7 @@ public class Controller {
         public void windowClosing(WindowEvent event) {
             logger.info("");
             model.generateVotesFiles();
+            model.closeClient();
         }
     }
 
