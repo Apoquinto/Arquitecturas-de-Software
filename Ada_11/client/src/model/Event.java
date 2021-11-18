@@ -8,10 +8,6 @@ public class Event {
     private String eventName;
     private LocalDateTime datetime;
 
-    public Event(String eventName){
-        this(eventName, "now");
-    }
-
     public Event(String eventName, String timeText) {
         logger = Log.getLogger();
         this.eventName = eventName;

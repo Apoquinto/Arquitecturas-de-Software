@@ -29,9 +29,7 @@ public class Poll {
     }
 
     public void registerVote(String option){
-        logger.info("");
-        options.get(option).addVote();
-        eventsHistory.add(new Event(option));
+        registerVote(option, null);
     }
 
     public void registerVote(String option, String timeText){

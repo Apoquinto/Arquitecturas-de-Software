@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 public class Model {
     private final Logger logger;
-    private final FileHandler fileHandler;
     private Client client;
     private Poll poll;
     private ArrayList<String> vars;
@@ -15,7 +14,6 @@ public class Model {
     public Model() {
         this.logger = Log.getLogger();
         this.poll = new Poll();
-        this.fileHandler = new FileHandler();
         this.client = new Client();
         this.client.startConnection("localhost", 8020);
         this.vars = new ArrayList<>();
@@ -28,8 +26,18 @@ public class Model {
         vars.add("votar");
         vars.add(target);
         vars.add("1");
-        this.client.sendMessage(new CallsFormatter().generateRequest("ejecutar", 2, vars.iterator()));
-        this.poll.registerVote(target);
+        CallsFormatter cf = new CallsFormatter();
+        client.sendMessage(cf.generateRequest("ejecutar", 2, vars.iterator()));
+        poll.registerVote(target);
+        String[] time = poll.getEventsHistory().get(poll.getEventsHistory().size()-1).toString().split("T");
+        vars.clear();
+        vars.add("servicio");
+        vars.add("registrar");
+        vars.add("evento");
+        vars.add("Se registró un voto para " + target);
+        vars.add("fecha");
+        vars.add(time[0] + " " + time[1]);
+        client.sendMessage(cf.generateRequest("ejecutar", 3, vars.iterator()));
     }
 
     public Collection<PollOption> getOptionsData(){
@@ -37,14 +45,8 @@ public class Model {
         return this.poll.getOptions();
     }
 
-    public void generateVotesFiles(){
-        logger.info("");
-        for (String name: poll.getOptionsNames()) {
-            fileHandler.writeFile(name + ".txt", poll.getEventsHistoryByName(name));
-        }
-    }
-
     public void closeClient(){
+        logger.info("");
         this.client.stopConnection();
     }
 
@@ -53,14 +55,20 @@ public class Model {
         return poll.getOptions().iterator();
     }
 
-    public void readInfo(String fileName) {
+    public void generatePoll() {
         logger.info("");
+        vars.clear();
+        vars.add("servicio");
+        vars.add("contar");
+        CallsFormatter cf = new CallsFormatter();
+        String response = client.sendMessage(cf.generateRequest("ejecutar", 1, vars.iterator()));
+        Iterator<String[]> votesAndCounts = cf.recoverAnswers(response);
 
-        for (String option: fileHandler.readFile(fileName)) {
-            if (!poll.registerOption(option)) break;
-
-            for (String voteTime : fileHandler.readFile(option + ".txt")) {
-                if (!voteTime.equals("")) poll.registerVote(option, voteTime);
+        while ((votesAndCounts.hasNext())) {
+            String[] option = votesAndCounts.next();
+            if (!poll.registerOption(option[0])) break;
+            for (int i = 0; i<Integer.parseInt(option[1]); i++) {
+                poll.registerVote(option[0]);
             }
         }
     }

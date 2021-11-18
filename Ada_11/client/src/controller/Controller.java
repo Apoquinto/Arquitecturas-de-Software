@@ -39,7 +39,7 @@ public class Controller {
 
     public void start() {
         logger.info("");
-        model.readInfo("options.txt");
+        model.generatePoll();
 
         update();
 
@@ -57,7 +57,6 @@ public class Controller {
         @Override
         public void windowClosing(WindowEvent event) {
             logger.info("");
-            model.generateVotesFiles();
             model.closeClient();
         }
     }

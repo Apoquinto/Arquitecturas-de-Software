@@ -1,4 +1,6 @@
-evento,5/11/2018 7:01 Se registró un voto para MacOS
-evento,5/11/2018 9:01 Se registró un voto para Unix
-evento,5/11/2018 16:01 Se registró un voto para Unix
-evento,Probando
+Se registró un voto para Unix,2021-11-18 01:04:46.490906200
+Se registró un voto para MacOS,2021-11-18 01:07:49.629051400
+Se registró un voto para Windows,2021-11-18 01:07:50.866514900
+Se registró un voto para MacOS,2021-11-18 01:07:52.162729800
+Se registró un voto para MacOS,2021-11-18 01:07:52.466466400
+Se registró un voto para MacOS,2021-11-18 01:07:52.898119700
