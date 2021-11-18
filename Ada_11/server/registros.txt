@@ -1,0 +1,4 @@
+evento,5/11/2018 7:01 Se registró un voto para MacOS
+evento,5/11/2018 9:01 Se registró un voto para Unix
+evento,5/11/2018 16:01 Se registró un voto para Unix
+evento,Probando
