@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "ACEA,AAAA,IAAI,CAAC;EACH,UAAU,EAAE,KAAK;CAClB;;ADFD,AACE,IADE,CACF,gBAAgB,CAAC;EACf,UAAU,EAAE,MAAM;CAKnB;;AAPH,AAII,IAJA,CACF,gBAAgB,CAGd,MAAM,CAAC;EACL,KAAK,EAAE,IAAI;CACZ",
+    "sources": [
+        "../scss/employees.scss",
+        "../scss/_general.scss",
+        "../scss/_variables.scss"
+    ],
+    "names": [],
+    "file": "employees.css"
+}

@@ -1,0 +1,21 @@
+body {
+  min-height: 100vh;
+}
+
+body .notification {
+  z-index: 100;
+  width: 100%;
+  position: absolute;
+  top: 1vh;
+}
+
+body .columns {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+/*# sourceMappingURL=index.css.map */

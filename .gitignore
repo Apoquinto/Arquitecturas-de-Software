@@ -1,9 +1,2 @@
-.settings
-.project
-.classpath
-test/
-target/
-/.idea/Arquitecturas-de-Software.iml
-/.idea/modules.xml
-/.idea/runConfigurations.xml
-/.idea/vcs.xml
+__pycache__
+*.env

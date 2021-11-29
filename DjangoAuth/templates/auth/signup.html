@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author"
+    content="Joshua Immanuel Meza Magaña, Roberto Carlos Llanes Montero, Jonathan Gregorio Gómez Benítez, Israel Cruz Morales">
+  <title>Employee Manager</title>
+  <link rel="shortcut icon" href="{% static 'img/icon/favicon.png' %}" type="image/png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}">
+  <script src="https://kit.fontawesome.com/a2e2b9d23e.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="has-background-grey-light">
+  <div class="container">
+    <!-- Error message -->
+    <div id="error-message" class="notification is-danger is-hidden">
+      <button class="delete close-error-message" data-errmsg-id="#error-message"></button>
+      <span class="icon-text">
+        <span class="icon">
+          <i class="fas fa-exclamation-circle"></i>
+        </span>
+        <span id="error-message-description"></span>
+      </span>
+    </div>
+
+    <!-- View -->
+    <div class="columns m-0">
+      <div
+        class="column box is-8-mobile is-offset-2-mobile is-6-tablet is-offset-3-tablet is-4-widescreen is-offset-4-widescreen">
+        <form method="post" onsubmit="return validateEmail() && validateSamePasswords()">
+          <div class="field">
+            <h1 class="has-text-centered title">Sign up</h1>
+          </div>
+          {% csrf_token %}
+          <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+              <input class="input" type="text" name="username" id="username" placeholder="Insert your username."
+                required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input class="input" type="email" name="email" id="email" placeholder="Insert your email."
+                required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input class="input" type="password" name="password" id="password" placeholder="Insert your password."
+                required>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Confirm your password</label>
+            <div class="control">
+              <input class="input" type="password" name="password-confirm" id="password-confirm" placeholder="Insert your password again."
+                required>
+            </div>
+          </div>
+          <div class="field">
+            <p class="mb-1"><a href="../login/">Return to Log In.</a></p>
+            <div class="is-flex is-justify-content-center is-align-content-center is-flex-direction-column">
+              <button type="submit" class="button is-link mx-auto" id="submit-button">Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="{% static 'js/generalFormValidators.js' %}"></script>
+  {% if form.errors %}
+  <script>showError("Server error");</script>
+  {% endif %}
+</body>
+
+</html>

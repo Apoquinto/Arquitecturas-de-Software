@@ -1,0 +1,12 @@
+body {
+  min-height: 100vh;
+}
+
+body .table-container {
+  overflow-x: scroll;
+}
+
+body .table-container .table {
+  width: 100%;
+}
+/*# sourceMappingURL=employees.css.map */
