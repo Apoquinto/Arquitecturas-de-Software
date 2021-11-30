@@ -76,7 +76,7 @@
     <div class="modal-background close-modal" data-modal-id="#add-option"></div>
     <div class="modal-card">
       <!-- Add form -->
-      <form action="create/{{ user.username }}/Employee/" method="post">
+      <form action="create/" method="post">
         {% csrf_token %}
         <section class="modal-card-head">
           <p class="modal-card-title">Add a new employee</p>
@@ -99,7 +99,7 @@
           <div class="field">
             <label class="label">Address</label>
             <div class="control">
-              <input class="input" type="text" name="adress" placeholder="Insert the employee's address." required>
+              <input class="input" type="text" name="address" placeholder="Insert the employee's address." required>
             </div>
           </div>
           <div class="field">
@@ -126,7 +126,7 @@
     <div class="modal-background close-modal" data-modal-id="#remove-option"></div>
     <div class="modal-card">
       <!-- Delete form -->
-      <form action="" method="post" id="post-selected">
+      <form action="deletelist/" method="post" id="post-selected">
         {% csrf_token %}
         <section class="modal-card-head">
           <p class="modal-card-title">Remove selected employees</p>
@@ -199,7 +199,7 @@
           <div aria-hidden="" class="modal px-3" id="edit-option{{employee.id}}">
             <div class="modal-background close-modal" data-modal-id="#edit-option{{employee.id}}"></div>
             <div class="modal-card">
-              <form action="update/{{employee.id}}/{{user.username}}/Product/" method="post">
+              <form action="update/{{employee.id}}/" method="post">
                 {% csrf_token %}
                 <section class="modal-card-head">
                   <p class="modal-card-title">Edit an employee</p>
@@ -223,7 +223,7 @@
                   <div class="field">
                     <label class="label">Address</label>
                     <div class="control">
-                      <input class="input" type="text" name="adress" placeholder="Insert the employee's address." required value="{{employee.address}}">
+                      <input class="input" type="text" name="address" placeholder="Insert the employee's address." required value="{{employee.address}}">
                     </div>
                   </div>
                   <div class="field">
@@ -250,7 +250,7 @@
           <div aria-hidden="" class="modal px-3" id="remove-option{{employee.id}}">
             <div class="modal-background close-modal" data-modal-id="#remove-option{{employee.id}}"></div>
             <div class="modal-card">
-              <form action="delete/{{product.nombre}}/{{user.username}}/Product/" method="post">
+              <form action="delete/{{employee.id}}/" method="post">
                 {% csrf_token %}
                 <section class="modal-card-head">
                   <p class="modal-card-title">Remove an employee</p>

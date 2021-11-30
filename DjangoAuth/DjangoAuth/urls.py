@@ -19,10 +19,11 @@ urlpatterns = [
     path('reset/done', PasswordResetCompleteView.as_view(
         template_name='auth/password_reset_complete.html'), name='password_reset_complete'),
     path('employees/', views.IndexView.as_view(), name='index'),
-    path('contacts/<int:pk>/', views.ProductDetailView.as_view, name='detail'),
-    path('employees/update/<int:id>/<str:user>/<str:type>/',
+    path('employees/update/<int:id>/',
          views.update, name='edit'),
-    path('employees/create/<str:user>/<str:type>/', views.create, name='create'),
-    path('employees/delete/<str:nombre>/<str:user>/<str:type>/',
-         views.delete, name='delete')
+    path('employees/create/', views.create, name='create'),
+    path('employees/delete/<int:id>/',
+         views.delete, name='delete'),
+    path('employees/deletelist/',
+    views.deletelist, name='deletelist')
 ]

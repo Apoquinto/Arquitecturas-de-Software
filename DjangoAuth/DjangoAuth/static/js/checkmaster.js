@@ -17,9 +17,10 @@ $(document).ready(function () {
 
     // Method to post the selected elements
     $("#post-selected").submit(function (event) {
+        event.preventDefault();
         var whereToPost = $(this).prop("action");
+        var token = $("input[name='csrfmiddlewaretoken']").val();
         var ids = [];
-
         // Get checked id's
         $("#check-table tr").each(function (index) {
             if (index) {
@@ -30,7 +31,7 @@ $(document).ready(function () {
                 }
             }
         });
-
-        $.post(whereToPost, {idCollection : ids});
+        $.post(whereToPost, {csrfmiddlewaretoken: token, idCollection : ids});
+        window.location.href = "../employees/";
     });
 });

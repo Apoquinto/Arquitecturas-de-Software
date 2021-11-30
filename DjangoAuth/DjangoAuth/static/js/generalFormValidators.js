@@ -21,8 +21,8 @@ function validateEmail() {
 }
 
 function validateSamePasswords() {
-    var passOriginal = $("#password").val();
-    var passCopy = $("#password-confirm").val();
+    var passOriginal = $("#password1").val();
+    var passCopy = $("#password2").val();
     var areEqual = passOriginal == passCopy;
 
     if (!areEqual) showError("Passwords don't match.");
