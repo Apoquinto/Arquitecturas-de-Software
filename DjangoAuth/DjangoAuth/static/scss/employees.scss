@@ -1,9 +1,21 @@
+@import "variables";
 @import "general";
 
 body {
-  .table-container {
-    overflow-x: scroll;
+  .navbar {
+    background-color: #37ebf3;
 
+    .button {
+      width: 100% !important;
+    }
+  }
+
+  //Nvm its all the screen
+  width: 100%;
+  .table-container {
+    //Change Upside content of the table
+    overflow-y: scroll !important;
+    //Change Table content
     .table {
       width: 100%;
     }

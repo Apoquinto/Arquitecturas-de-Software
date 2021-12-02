@@ -1,16 +1,37 @@
 @import "general";
 
 body {
+  background-image: url("../img/bg.png");
+  background-size: cover;
   .notification {
     z-index: 100;
     width: 100%;
     position: absolute;
-    top: 1vh;
   }
 
   .columns {
-    height: 100vh;
+    //Login background of colums
+    height: 100vh !important;
+    margin: 0 !important;
+    display: flex !important ;
+  }
+  .column {
+    margin: auto;
     display: flex;
+    justify-content: center;
     align-items: center;
+  }
+
+  .field {
+    margin: auto;
+    margin-top: 3vh;
+    padding: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button {
+    margin-top: 1.2vh;
   }
 }

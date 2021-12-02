@@ -1,12 +1,18 @@
+* {
+  padding: 0;
+  margin: 0; }
+
 body {
   min-height: 100vh;
-}
+  overflow: auto !important; }
 
-body .table-container {
-  overflow-x: scroll;
-}
-
-body .table-container .table {
-  width: 100%;
-}
-/*# sourceMappingURL=employees.css.map */
+body {
+  width: 100%; }
+  body .navbar {
+    background-color: #37ebf3; }
+    body .navbar .button {
+      width: 100% !important; }
+  body .table-container {
+    overflow-y: scroll !important; }
+    body .table-container .table {
+      width: 100%; }

@@ -1,5 +1,10 @@
 @import "variables";
 
+* {
+  padding: 0;
+  margin: 0;
+}
 body {
   min-height: 100vh;
+  overflow: auto !important;
 }

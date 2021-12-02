@@ -1,298 +1,440 @@
-{% load static %}
-{% if user.is_authenticated %}
+{% load static %} {% if user.is_authenticated %}
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.2" />
+    <meta
+      name="author"
+      content="Joshua Immanuel Meza Magaña, Roberto Carlos Llanes Montero, Jonathan Gregorio Gómez Benítez, Israel Cruz Morales"
+    />
+    <title>Employee Manager</title>
+    <link
+      rel="shortcut icon"
+      href="{% static 'img/icon/favicon.png' %}"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/employees.css' %}" />
+    <script
+      src="https://kit.fontawesome.com/a2e2b9d23e.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author"
-    content="Joshua Immanuel Meza Magaña, Roberto Carlos Llanes Montero, Jonathan Gregorio Gómez Benítez, Israel Cruz Morales">
-  <title>Employee Manager</title>
-  <link rel="shortcut icon" href="{% static 'img/icon/favicon.png' %}" type="image/png" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-  <link rel="stylesheet" href="{% static 'css/employees.css' %}">
-  <script src="https://kit.fontawesome.com/a2e2b9d23e.js" crossorigin="anonymous"></script>
-</head>
+  <body class="has-background-white-ter">
+    <!-- Navbar -->
+    <nav
+      class="navbar is-spaced"
+      role="navigation "
+      aria-label="main navigation "
+    >
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/employees">
+          <img src="{% static 'img/icon/favicon.png' %}" width="64" />
+          <h1 class="pl-1"><strong>Employee Manager</strong></h1>
+        </a>
 
-<body class="has-background-white-ter">
-  <!-- Navbar -->
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="/employees">
-        <img src="{% static 'img/icon/favicon.png' %}" class="is-64x64">
-        <h1 class="pl-1"><strong>Employee Manager</strong></h1>
-      </a>
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarMenu"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
 
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-
-    <div id="navbarMenu" class="navbar-menu">
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <button class="button is-success open-modal" data-modal-id="#add-option">
-            <span class="icon-text">
-              <span class="icon">
-                <i class="fas fa-plus-circle"></i>
-              </span>
-              <span>Add a new employee</span>
-            </span>
-          </button>
-        </div>
-        <div class="navbar-item">
-          <button class="button is-danger open-modal" data-modal-id="#remove-option">
-            <span class="icon-text">
-              <span class="icon">
-                <i class="fas fa-minus-circle"></i>
-              </span>
-              <span>Remove selected employees</span>
-            </span>
-          </button>
-        </div>
-        <div class="navbar-item">
-          <a href="/logout">
-            <button type="submit" class="button is-dark">
+      <div id="navbarMenu" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <button
+              class="button is-success open-modal is-medium"
+              data-modal-id="#add-option"
+            >
               <span class="icon-text">
                 <span class="icon">
-                  <i class="fas fa-sign-out-alt"></i>
+                  <i class="fas fa-plus-circle"></i>
                 </span>
-                <span>Log out</span>
+                <span class="newEmploycss">Add a new employee</span>
               </span>
             </button>
-          </a>
+          </div>
+          <div class="navbar-item">
+            <button
+              class="button is-danger open-modal is-medium"
+              data-modal-id="#remove-option"
+            >
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fas fa-minus-circle"></i>
+                </span>
+                <span>Remove selected employees</span>
+              </span>
+            </button>
+          </div>
+          <div class="navbar-item">
+            <a href="/logout">
+              <button type="submit" class="button is-dark is-medium">
+                <span class="icon-text">
+                  <span class="icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                  </span>
+                  <span>Log out</span>
+                </span>
+              </button>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Navbar menus -->
-  <!-- Add menu -->
-  <div aria-hidden="" class="modal px-3" id="add-option">
-    <div class="modal-background close-modal" data-modal-id="#add-option"></div>
-    <div class="modal-card">
-      <!-- Add form -->
-      <form action="create/" method="post">
-        {% csrf_token %}
-        <section class="modal-card-head">
-          <p class="modal-card-title">Add a new employee</p>
-          <button aria-label="close" class="delete close-modal" data-modal-id="#add-option"></button>
-        </section>
-        <section class="modal-card-body">
-          <div class="field">
-            <label class="label">Name</label>
-            <div class="control">
-              <input class="input" type="text" name="name" placeholder="Insert the employee's name." required>
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control">
-              <input class="input" type="email" name="email" id="email" placeholder="Insert the employee's email."
-                required>
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Address</label>
-            <div class="control">
-              <input class="input" type="text" name="address" placeholder="Insert the employee's address." required>
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Phone number</label>
-            <div class="control">
-              <input class="input" type="text" name="phone_num" placeholder="Insert the employee's phone number." required>
-            </div>
-          </div>
-        </section>
-        <section class="modal-card-foot field is-grouped">
-          <div class="control">
-            <button type="submit" class="button is-success">Save changes</button>
-          </div>
-          <div class="control">
-            <button class="button is-danger close-modal" data-modal-id="#add-option">Cancel</button>
-          </div>
-        </section>
-      </form>
-    </div>
-  </div>
-
-  <!-- Delete menu -->
-  <div aria-hidden="" class="modal px-3" id="remove-option">
-    <div class="modal-background close-modal" data-modal-id="#remove-option"></div>
-    <div class="modal-card">
-      <!-- Delete form -->
-      <form action="deletelist/" method="post" id="post-selected">
-        {% csrf_token %}
-        <section class="modal-card-head">
-          <p class="modal-card-title">Remove selected employees</p>
-          <button aria-label="close" class="delete close-modal"
-            data-modal-id="#remove-option"></button>
-        </section>
-        <section class="modal-card-body">
-          <div class="field">
-            <div class="control">
-              <label class="checkbox">
-                <input type="checkbox" name="check" required="">
-                I know that this action is permanent and I want to continue.
-              </label>
-            </div>
-          </div>
-        </section>
-        <section class="modal-card-foot field is-grouped">
-          <div class="control">
-            <button type="submit" class="button is-success">Save changes</button>
-          </div>
-          <div class="control">
-            <button class="button is-danger close-modal"
-              data-modal-id="#remove-option">Cancel</button>
-          </div>
-        </section>
-      </form>
-    </div>
-  </div>
-
-  <!-- Content -->
-  <div class="container mx-auto mt-4 mb-0 px-3 pb-3">
-    <div class="table-container">
-      <table id="check-table" class="table mt-3">
-        <thead>
-          <tr>
-            <th><input type="checkbox" id="check-master"></th>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Phone number</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for employee in employee_list %}
-          <tr>
-            <!-- Table content -->
-            <td><input type="checkbox" class="checked-by-master"></td>
-            <td class="e-id">{{employee.id}}</td>
-            <td>{{employee.name}}</td>
-            <td>{{employee.email}}</td>
-            <td>{{employee.address}}</td>
-            <td>{{employee.phone_num}}</td>
-            <td>
-              <div class="icon-text">
-                <div class="icon">
-                  <a class="has-text-warning open-modal" data-modal-id="#edit-option{{employee.id}}"><i
-                      class="far fa-edit"></i></a>
-                </div>
-                <div class="icon">
-                  <a class="has-text-danger open-modal" data-modal-id="#remove-option{{employee.id}}"><i
-                      class="far fa-trash-alt"></i></a>
-                </div>
+    <!-- Navbar menus -->
+    <!-- Add menu -->
+    <div aria-hidden="" class="modal px-3" id="add-option">
+      <div
+        class="modal-background close-modal"
+        data-modal-id="#add-option"
+      ></div>
+      <div class="modal-card">
+        <!-- Add form -->
+        <form action="create/" method="post">
+          {% csrf_token %}
+          <section class="modal-card-head">
+            <p class="modal-card-title">Add a new employee</p>
+            <button
+              aria-label="close"
+              class="delete close-modal"
+              data-modal-id="#add-option"
+            ></button>
+          </section>
+          <section class="modal-card-body">
+            <div class="field">
+              <label class="label">Name</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  name="name"
+                  placeholder="Insert the employee's name."
+                  required
+                />
               </div>
-            </td>
-          </tr>
-
-          <!-- Edit panel -->
-          <div aria-hidden="" class="modal px-3" id="edit-option{{employee.id}}">
-            <div class="modal-background close-modal" data-modal-id="#edit-option{{employee.id}}"></div>
-            <div class="modal-card">
-              <form action="update/{{employee.id}}/" method="post">
-                {% csrf_token %}
-                <section class="modal-card-head">
-                  <p class="modal-card-title">Edit an employee</p>
-                  <button aria-label="close" class="delete close-modal"
-                    data-modal-id="#edit-option{{employee.id}}"></button>
-                </section>
-                <section class="modal-card-body">
-                  <div class="field">
-                    <label class="label">Name</label>
-                    <div class="control">
-                      <input class="input" type="text" name="name" placeholder="Insert the employee's name." required value="{{employee.name}}">
-                    </div>
-                  </div>
-                  <div class="field">
-                    <label class="label">Email</label>
-                    <div class="control">
-                      <input class="input" type="email" name="email" id="email" placeholder="Insert the employee's email."
-                        required value="{{employee.email}}">
-                    </div>
-                  </div>
-                  <div class="field">
-                    <label class="label">Address</label>
-                    <div class="control">
-                      <input class="input" type="text" name="address" placeholder="Insert the employee's address." required value="{{employee.address}}">
-                    </div>
-                  </div>
-                  <div class="field">
-                    <label class="label">Phone number</label>
-                    <div class="control">
-                      <input class="input" type="text" name="phone_num" placeholder="Insert the employee's phone number." required value="{{employee.phone_num}}">
-                    </div>
-                  </div>
-                </section>
-                <section class="modal-card-foot field is-grouped">
-                  <div class="control">
-                    <button type="submit" class="button is-success">Save changes</button>
-                  </div>
-                  <div class="control">
-                    <button class="button is-danger close-modal"
-                      data-modal-id="#edit-option{{employee.id}}">Cancel</button>
-                  </div>
-                </section>
-              </form>
             </div>
-          </div>
-
-          <!-- Delete panel -->
-          <div aria-hidden="" class="modal px-3" id="remove-option{{employee.id}}">
-            <div class="modal-background close-modal" data-modal-id="#remove-option{{employee.id}}"></div>
-            <div class="modal-card">
-              <form action="delete/{{employee.id}}/" method="post">
-                {% csrf_token %}
-                <section class="modal-card-head">
-                  <p class="modal-card-title">Remove an employee</p>
-                  <button aria-label="close" class="delete close-modal"
-                    data-modal-id="#remove-option{{employee.id}}"></button>
-                </section>
-                <section class="modal-card-body">
-                  <div class="field">
-                    <div class="control">
-                      <label class="checkbox">
-                        <input type="checkbox" name="check" required="">
-                        I know that this action is permanent and I want to continue.
-                      </label>
-                    </div>
-                  </div>
-                </section>
-                <section class="modal-card-foot field is-grouped">
-                  <div class="control">
-                    <button type="submit" class="button is-success">Save changes</button>
-                  </div>
-                  <div class="control">
-                    <button class="button is-danger close-modal"
-                      data-modal-id="#remove-option{{employee.id}}">Cancel</button>
-                  </div>
-                </section>
-              </form>
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Insert the employee's email."
+                  required
+                />
+              </div>
             </div>
-          </div>
-
-          {% endfor %}
-        </tbody>
-      </table>
+            <div class="field">
+              <label class="label">Address</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  name="address"
+                  placeholder="Insert the employee's address."
+                  required
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Phone number</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  name="phone_num"
+                  placeholder="Insert the employee's phone number."
+                  required
+                />
+              </div>
+            </div>
+          </section>
+          <section class="modal-card-foot field is-grouped">
+            <div class="control">
+              <button type="submit" class="button is-success">
+                Save changes
+              </button>
+            </div>
+            <div class="control">
+              <button
+                class="button is-danger close-modal"
+                data-modal-id="#add-option"
+              >
+                Cancel
+              </button>
+            </div>
+          </section>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="{% static 'js/navbar.js' %}"></script>
-  <script src="{% static 'js/modal.js' %}"></script>
-  <script src="{% static 'js/checkmaster.js' %}"></script>
-</body>
+    <!-- Delete menu -->
+    <div aria-hidden="" class="modal px-3" id="remove-option">
+      <div
+        class="modal-background close-modal"
+        data-modal-id="#remove-option"
+      ></div>
+      <div class="modal-card">
+        <!-- Delete form -->
+        <form action="deletelist/" method="post" id="post-selected">
+          {% csrf_token %}
+          <section class="modal-card-head">
+            <p class="modal-card-title">Remove selected employees</p>
+            <button
+              aria-label="close"
+              class="delete close-modal"
+              data-modal-id="#remove-option"
+            ></button>
+          </section>
+          <section class="modal-card-body">
+            <div class="field">
+              <div class="control">
+                <label class="checkbox">
+                  <input type="checkbox" name="check" required="" />
+                  I know that this action is permanent and I want to continue.
+                </label>
+              </div>
+            </div>
+          </section>
+          <section class="modal-card-foot field is-grouped">
+            <div class="control">
+              <button type="submit" class="button is-success">
+                Save changes
+              </button>
+            </div>
+            <div class="control">
+              <button
+                class="button is-danger close-modal"
+                data-modal-id="#remove-option"
+              >
+                Cancel
+              </button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
 
+    <!-- Content -->
+    <div class="container mx-auto mt-6 mb-0 px-0">
+      <div class="table-container">
+        <table id="check-table " class="table mt-5">
+          <thead>
+            <tr>
+              <th><input type="checkbox" id="check-master" /></th>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Phone number</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for employee in employee_list %}
+            <tr>
+              <!-- Table content -->
+              <td><input type="checkbox" class="checked-by-master" /></td>
+              <td class="e-id">{{employee.id}}</td>
+              <td>{{employee.name}}</td>
+              <td>{{employee.email}}</td>
+              <td>{{employee.address}}</td>
+              <td>{{employee.phone_num}}</td>
+              <td>
+                <div class="icon-text">
+                  <div class="icon">
+                    <a
+                      class="has-text-warning open-modal"
+                      data-modal-id="#edit-option{{employee.id}}"
+                      ><i class="far fa-edit"></i
+                    ></a>
+                  </div>
+                  <div class="icon">
+                    <a
+                      class="has-text-danger open-modal"
+                      data-modal-id="#remove-option{{employee.id}}"
+                      ><i class="far fa-trash-alt"></i
+                    ></a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Edit panel -->
+            <div
+              aria-hidden=""
+              class="modal px-3"
+              id="edit-option{{employee.id}}"
+            >
+              <div
+                class="modal-background close-modal"
+                data-modal-id="#edit-option{{employee.id}}"
+              ></div>
+              <div class="modal-card">
+                <form action="update/{{employee.id}}/" method="post">
+                  {% csrf_token %}
+                  <section class="modal-card-head">
+                    <p class="modal-card-title">Edit an employee</p>
+                    <button
+                      aria-label="close"
+                      class="delete close-modal"
+                      data-modal-id="#edit-option{{employee.id}}"
+                    ></button>
+                  </section>
+                  <section class="modal-card-body">
+                    <div class="field">
+                      <label class="label">Name</label>
+                      <div class="control">
+                        <input
+                          class="input"
+                          type="text"
+                          name="name"
+                          placeholder="Insert the employee's name."
+                          required
+                          value="{{employee.name}}"
+                        />
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">Email</label>
+                      <div class="control">
+                        <input
+                          class="input"
+                          type="email"
+                          name="email"
+                          id="email"
+                          placeholder="Insert the employee's email."
+                          required
+                          value="{{employee.email}}"
+                        />
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">Address</label>
+                      <div class="control">
+                        <input
+                          class="input"
+                          type="text"
+                          name="address"
+                          placeholder="Insert the employee's address."
+                          required
+                          value="{{employee.address}}"
+                        />
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label">Phone number</label>
+                      <div class="control">
+                        <input
+                          class="input"
+                          type="text"
+                          name="phone_num"
+                          placeholder="Insert the employee's phone number."
+                          required
+                          value="{{employee.phone_num}}"
+                        />
+                      </div>
+                    </div>
+                  </section>
+                  <section class="modal-card-foot field is-grouped">
+                    <div class="control">
+                      <button type="submit" class="button is-success">
+                        Save changes
+                      </button>
+                    </div>
+                    <div class="control">
+                      <button
+                        class="button is-danger close-modal"
+                        data-modal-id="#edit-option{{employee.id}}"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </section>
+                </form>
+              </div>
+            </div>
+
+            <!-- Delete panel -->
+            <div
+              aria-hidden=""
+              class="modal px-3"
+              id="remove-option{{employee.id}}"
+            >
+              <div
+                class="modal-background close-modal"
+                data-modal-id="#remove-option{{employee.id}}"
+              ></div>
+              <div class="modal-card">
+                <form action="delete/{{employee.id}}/" method="post">
+                  {% csrf_token %}
+                  <section class="modal-card-head">
+                    <p class="modal-card-title">Remove an employee</p>
+                    <button
+                      aria-label="close"
+                      class="delete close-modal"
+                      data-modal-id="#remove-option{{employee.id}}"
+                    ></button>
+                  </section>
+                  <section class="modal-card-body">
+                    <div class="field">
+                      <div class="control">
+                        <label class="checkbox">
+                          <input type="checkbox" name="check" required="" />
+                          I know that this action is permanent and I want to
+                          continue.
+                        </label>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="modal-card-foot field is-grouped">
+                    <div class="control">
+                      <button type="submit" class="button is-success">
+                        Save changes
+                      </button>
+                    </div>
+                    <div class="control">
+                      <button
+                        class="button is-danger close-modal"
+                        data-modal-id="#remove-option{{employee.id}}"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </section>
+                </form>
+              </div>
+            </div>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/modal.js' %}"></script>
+    <script src="{% static 'js/checkmaster.js' %}"></script>
+  </body>
 </html>
 {% else %}
-<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../login">
+<meta http-equiv="REFRESH" content="0;URL=../login" />
 {% endif %}
