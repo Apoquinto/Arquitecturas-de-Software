@@ -32,7 +32,7 @@
     <div class="columns m-0">
       <div
         class="column box is-8-mobile is-offset-2-mobile is-6-tablet is-offset-3-tablet is-4-widescreen is-offset-4-widescreen">
-        <form method="post" onsubmit="return validateEmail() && validateSamePasswords()">
+        <form  class="postField" method="post" onsubmit="return validateEmail() && validateSamePasswords()">
           <div class="field">
             <h1 class="has-text-centered title">Sign up</h1>
           </div>
@@ -73,6 +73,13 @@
           </div>
         </form>
       </div>
+      <div id="column2" class="column box">
+        <img
+          src="{% static 'img/sampleOffice.jpg' %}"
+          class="imageLog"
+          alt=""
+          srcset=""
+        />
     </div>
   </div>
 

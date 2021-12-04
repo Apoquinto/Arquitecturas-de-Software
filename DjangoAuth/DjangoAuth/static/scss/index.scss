@@ -1,6 +1,7 @@
 @import "general";
 
 body {
+  overflow: hidden !important;
   background-image: url("../img/bg.png");
   background-size: cover;
   .notification {
@@ -9,17 +10,43 @@ body {
     position: absolute;
   }
 
+  .container {
+    columns: 0 !important;
+    padding: auto !important;
+    display: flex;
+    justify-content: center;
+  }
+
   .columns {
     //Login background of colums
-    height: 100vh !important;
-    margin: 0 !important;
+    margin: 10vw 0 0 0 !important;
     display: flex !important ;
   }
   .column {
-    margin: auto;
+    margin-left: 0 !important;
+    width: 50vw !important;
+    padding: 0 !important;
+    border-radius: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100% !important;
+  }
+  #column2 {
+    width: 100% !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    display: flex;
+  }
+  .imageLog {
+    width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 10px 10px 0 !important;
+    height: 100%;
+  }
+
+  .postField {
+    margin: 10% 20% 5vw 20% !important;
+    margin: auto;
+    height: auto;
   }
 
   .field {

@@ -1,27 +1,44 @@
-* {
-  padding: 0;
-  margin: 0; }
-
 body {
   min-height: 100vh;
   overflow: auto !important; }
 
 body {
+  overflow: hidden !important;
   background-image: url("../img/bg.png");
   background-size: cover; }
   body .notification {
     z-index: 100;
     width: 100%;
     position: absolute; }
+  body .container {
+    columns: 0 !important;
+    padding: auto !important;
+    display: flex;
+    justify-content: center; }
   body .columns {
-    height: 100vh !important;
-    margin: 0 !important;
+    margin: 10vw 0 0 0 !important;
     display: flex !important; }
   body .column {
-    margin: auto;
+    margin-left: 0 !important;
+    width: 50vw !important;
+    padding: 0 !important;
+    border-radius: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center; }
+    height: 100% !important; }
+  body #column2 {
+    width: 100% !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    display: flex; }
+  body .imageLog {
+    width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 10px 10px 0 !important;
+    height: 100%; }
+  body .postField {
+    margin: 10% 20% 5vw 20% !important;
+    margin: auto;
+    height: auto; }
   body .field {
     margin: auto;
     margin-top: 3vh;
