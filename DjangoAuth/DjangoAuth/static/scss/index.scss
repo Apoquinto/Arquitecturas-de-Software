@@ -24,11 +24,14 @@ body {
   }
   .column {
     margin-left: 0 !important;
-    width: 50vw !important;
+    width: 70vw !important;
     padding: 0 !important;
     border-radius: 10px;
     display: flex;
     height: 100% !important;
+  }
+  #column1 {
+    width: 55vw !important;
   }
   #column2 {
     width: 100% !important;
@@ -60,5 +63,9 @@ body {
 
   .button {
     margin-top: 1.2vh;
+  }
+
+  .form {
+    background-color: red !important;
   }
 }

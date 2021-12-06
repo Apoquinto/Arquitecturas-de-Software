@@ -1,0 +1,65 @@
+@import "general";
+@import "index";
+* {
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+}
+body {
+  overflow: hidden !important;
+  background-image: url("../img/bg.png");
+  background-size: cover;
+
+  .notification {
+    z-index: 100;
+    width: 100%;
+    position: absolute;
+  }
+
+  .container {
+    height: 100vh;
+    width: auto !important;
+    display: flex;
+    justify-content: center;
+  }
+  .columns {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw;
+    height: 30vw;
+    margin: 18vh !important;
+  }
+
+  .column {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    justify-content: center;
+    height: 100%;
+    width: 30vw !important;
+    border-radius: 10px 0 0 10px !important;
+  }
+
+  .postField {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #column2 {
+    width: 20vw !important ;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+  .imageLog {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100%;
+    width: 100%;
+    border-radius: 0 10px 10px 0 !important;
+  }
+}

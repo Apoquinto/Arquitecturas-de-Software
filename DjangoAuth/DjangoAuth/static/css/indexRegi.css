@@ -3,6 +3,10 @@ body {
   overflow: auto !important; }
 
 body {
+  min-height: 100vh;
+  overflow: auto !important; }
+
+body {
   overflow: hidden !important;
   background-image: url("../img/bg.png");
   background-size: cover; }
@@ -52,3 +56,51 @@ body {
     margin-top: 1.2vh; }
   body .form {
     background-color: red !important; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+body #column2 {
+  display: flex !important; }
+
+body .imageLog {
+  display: flex;
+  width: 20vw !important; }
+
+body #signupBox {
+  margin: 0 !important;
+  height: 62vh;
+  margin-top: 10vw !important; }
+
+body #containerSign {
+  display: flex;
+  justify-content: center; }
+
+body #whiteSign {
+  display: flex;
+  height: 100% !important;
+  width: 30vw !important;
+  margin: auto !important;
+  padding: auto !important;
+  border-radius: 10px 0 0 10px !important; }
+
+body .postField {
+  margin: auto !important;
+  padding: auto !important; }
+
+body .field {
+  margin-top: 1.5vh; }
+
+@media only screen and (max-width: 600px) {
+  body #column2 {
+    width: auto; }
+  body .imageLog {
+    width: 0vw !important; }
+  body #whiteSign {
+    display: flex;
+    height: 120% !important;
+    width: 70vw !important;
+    margin: auto !important;
+    padding: auto !important;
+    border-radius: 10px 10px 10px 10px !important; } }

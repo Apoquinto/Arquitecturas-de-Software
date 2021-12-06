@@ -1,31 +1,33 @@
 // Error managers
 
 $(".close-error-message").click(function (event) {
-    $(event.currentTarget.dataset.errmsgId).toggleClass("is-hidden");
+  $(event.currentTarget.dataset.errmsgId).toggleClass("is-hidden");
 });
 
 function showError(message) {
-    $("#error-message-description").text(message);
-    $("#error-message").removeClass("is-hidden");
+  $("#error-message-description").text(message);
+  $("#error-message").removeClass("is-hidden");
 }
 
 // Validators
 
+//Quitar ValidateEmail no esta funcionando
 function validateEmail() {
-    var emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    var isValid = emailRegex.test($("#email").val());
+  var emailRegex =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  var isValid = emailRegex.test($("#email").val());
 
-    if (!isValid) showError("Please insert a valid email.");
+  if (!isValid) showError("Please insert a valid email.");
 
-    return isValid;
+  return isValid;
 }
 
 function validateSamePasswords() {
-    var passOriginal = $("#password1").val();
-    var passCopy = $("#password2").val();
-    var areEqual = passOriginal == passCopy;
+  var passOriginal = $("#password1").val();
+  var passCopy = $("#password2").val();
+  var areEqual = passOriginal == passCopy;
 
-    if (!areEqual) showError("Passwords don't match.");
+  if (!areEqual) showError("Passwords don't match.");
 
-    return areEqual;
+  return areEqual;
 }

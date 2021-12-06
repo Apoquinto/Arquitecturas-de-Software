@@ -58,7 +58,11 @@ def delete(request, id):
     return redirect("/employees")
 
 def deletelist(request):
-    lista = dict(request.POST)
-    for element in lista['idCollection[]']:
-        employee = Employee.objects.get(id=element)
-        employee.delete()
+    try:
+        lista = dict(request.POST)
+
+        for element in lista['idCollection[]']:
+            employee = Employee.objects.get(id=element)
+            employee.delete()
+    except Exception as e:
+        return
