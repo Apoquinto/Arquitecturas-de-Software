@@ -35,11 +35,12 @@ body {
     margin: 0;
     justify-content: center;
     height: 100%;
-    width: 30vw !important;
+    width: 20vw !important;
     border-radius: 10px 0 0 10px !important;
   }
 
   .postField {
+    font-size: medium;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -59,22 +60,38 @@ body {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media screen and (max-width: 900px) and (min-width: 0px) {
   body {
     #column2 {
-      width: auto;
-    }
-    .imageLog {
-      width: 0vw !important;
+      min-width: 0px;
+      width: 1px !important;
     }
 
-    #whiteSign {
+    .imageLog {
+      min-width: 0px;
+      width: 1px !important;
+    }
+    .container {
       display: flex;
-      height: 120% !important;
-      width: 70vw !important;
-      margin: auto !important;
-      padding: auto !important;
+      justify-content: center;
+    }
+    #ColmsContainer {
+      min-width: 50%;
+      height: 50%;
+    }
+    #firstColm {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      justify-content: center;
+      height: 100%;
+      width: 50vw !important;
       border-radius: 10px 10px 10px 10px !important;
+    }
+
+    .h1 {
+      font-size: small;
+      font-weight: 100;
     }
   }
 }
