@@ -1,11 +1,11 @@
 {
-  "version": 3,
-  "mappings": "ACEA,AAAA,IAAI,CAAC;EACH,UAAU,EAAE,KAAK;CAClB;;ADFD,AACE,IADE,CACF,gBAAgB,CAAC;EACf,UAAU,EAAE,MAAM;CAKnB;;AAPH,AAII,IAJA,CACF,gBAAgB,CAGd,MAAM,CAAC;EACL,KAAK,EAAE,IAAI;CACZ",
-  "sources": [
-    "../scss/employees.scss",
-    "../scss/_general.scss",
-    "../scss/_variables.scss"
-  ],
-  "names": [],
-  "file": "employees.css"
+    "version": 3,
+    "mappings": "ACEA,AAAA,IAAI,CAAC;EACH,UAAU,EAAE,KAAK;EACjB,QAAQ,EAAE,eAAe;CAC1B;;ADHD,AAAA,IAAI,CAAC;EACH,gBAAgB,EAAE,SAAS;EAC3B,KAAK,EAAE,IAAI;CAiBZ;;AAnBD,AAIE,IAJE,CAIF,OAAO,CAAC;EACN,gBAAgB,EAAE,KAAK;CAKxB;;AAVH,AAOI,IAPA,CAIF,OAAO,CAGL,OAAO,CAAC;EACN,KAAK,EAAE,eAAe;CACvB;;AATL,AAYE,IAZE,CAYF,gBAAgB,CAAC;EACf,UAAU,EAAE,iBAAiB;CAK9B;;AAlBH,AAeI,IAfA,CAYF,gBAAgB,CAGd,MAAM,CAAC;EACL,KAAK,EAAE,IAAI;CACZ",
+    "sources": [
+        "../scss/employees.scss",
+        "../scss/_general.scss",
+        "../scss/_variables.scss"
+    ],
+    "names": [],
+    "file": "employees.css"
 }

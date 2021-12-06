@@ -10,18 +10,6 @@ function showError(message) {
 }
 
 // Validators
-
-//Quitar ValidateEmail no esta funcionando
-function validateEmail() {
-  var emailRegex =
-    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-  var isValid = emailRegex.test($("#email").val());
-
-  if (!isValid) showError("Please insert a valid email.");
-
-  return isValid;
-}
-
 function validateSamePasswords() {
   var passOriginal = $("#password1").val();
   var passCopy = $("#password2").val();
