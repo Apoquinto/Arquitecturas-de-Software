@@ -30,9 +30,10 @@ body {
     margin: 0;
     justify-content: center;
     height: 100%;
-    width: 30vw !important;
+    width: 20vw !important;
     border-radius: 10px 0 0 10px !important; }
   body .postField {
+    font-size: medium;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,15 +47,27 @@ body {
     width: 100%;
     border-radius: 0 10px 10px 0 !important; }
 
-@media only screen and (max-width: 600px) {
+@media screen and (max-width: 900px) and (min-width: 0px) {
   body #column2 {
-    width: auto; }
+    min-width: 0px;
+    width: 1px !important; }
   body .imageLog {
-    width: 0vw !important; }
-  body #whiteSign {
+    min-width: 0px;
+    width: 1px !important; }
+  body .container {
     display: flex;
-    height: 120% !important;
-    width: 70vw !important;
-    margin: auto !important;
-    padding: auto !important;
-    border-radius: 10px 10px 10px 10px !important; } }
+    justify-content: center; }
+  body #ColmsContainer {
+    min-width: 50%;
+    height: 50%; }
+  body #firstColm {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    justify-content: center;
+    height: 100%;
+    width: 50vw !important;
+    border-radius: 10px 10px 10px 10px !important; }
+  body .h1 {
+    font-size: small;
+    font-weight: 100; } }
