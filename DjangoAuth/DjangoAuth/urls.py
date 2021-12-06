@@ -1,3 +1,4 @@
+from django.conf.urls import include
 from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
@@ -27,5 +28,5 @@ urlpatterns = [
     path('employees/delete/<int:id>/',
          views.delete, name='delete'),
     path('employees/deletelist/',
-    views.deletelist, name='deletelist')
+    views.deletelist, name='deletelist'),
 ]

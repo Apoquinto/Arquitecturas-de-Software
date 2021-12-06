@@ -1,3 +1,7 @@
+"""
+Módulo de apoyo para aplicaciones Django, permite agilizar las operaciones de generación de código con una interfaz CLI intuitiva.
+"""
+
 #!/usr/bin/env python
 import os
 import sys
