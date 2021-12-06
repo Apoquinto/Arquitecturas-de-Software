@@ -42,3 +42,7 @@ Una vez realizados todos los pasos anteriormente mencionados, solo será necesar
 > `py manage.py runserver`
 
 Finalmente, acceda al [index](http://localhost:8000/), genere una cuenta para poder acceder y disfrute del programa.
+
+## Advertencia
+
+Algunas funcionalidades pueden tener un desempeño inesperado si no se ejecuta la página web en un navegador basado en el motor Chromium.
